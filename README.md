@@ -1,7 +1,7 @@
 # UTD Study Spots
 
 ## Overview
-UTD Study Spots is an iOS application designed to help UT Dallas students find, rate, and share study locations across campus. The app provides a comprehensive directory of study spaces with detailed information about each location, helping students discover the perfect spot based on their preferences and needs.
+UTD Study Spots is an iOS application designed to help UT Dallas students find and share study locations across campus. The app provides a comprehensive directory of study spaces with detailed information about each location, helping students discover the perfect spot based on their preferences and needs.
 
 ## Features
 - **Browse Study Locations**: View a curated list of study spots around the UTD campus

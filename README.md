@@ -55,10 +55,9 @@ The project follows the MVVM (Model-View-ViewModel) architecture:
 - Notifications for favorite spots
 
 ## Contributors
-[Your Name/Team Members]
+Hrishikesh Naveenam
 
-## License
-[License Information]
+
 
 ---
 

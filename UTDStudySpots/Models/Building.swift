@@ -74,6 +74,22 @@ extension Building {
                 "Sunday": "12:00 PM - 9:00 PM"
             ],
             imageNames: ["slc_exterior", "slc_interior"]
+        ),
+        Building(
+            id: UUID(),
+            name: "Founders Building",
+            code: "FO",
+            address: "800 W Campbell Rd, Richardson, TX 75080",
+            openingHours: [
+                "Monday": "8:00am – 10:45pm",
+                "Tuesday": "8:00am – 10:45pm",
+                "Wednesday": "8:00am – 10:45pm",
+                "Thursday": "8:00am – 10:45pm",
+                "Friday": "8:00am – 9:45pm",
+                "Saturday": "10:00am – 6:45pm",
+                "Sunday": "12:00 PM - 9:45 PM"
+            ],
+            imageNames: ["founders_exterior", "founders_interior"]
         )
     ]
 }

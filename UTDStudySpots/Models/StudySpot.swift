@@ -74,6 +74,18 @@ extension StudySpot {
             longitude: -96.7503553,
             reviewIDs: [],
             isFavorite: false
+        ),
+        StudySpot(
+            id: UUID(),
+            name: "Founders Building - 1st Floor",
+            buildingID: Building.samples[3].id,
+            floor: 1,
+            description: "Open collaboration space with comfortable seating.",
+            features: ["Group Study", "Power Outlets", "WiFi", "Coffee Nearby"],
+            capacity: 40,
+            latitude: 32.9868993,
+            longitude: -96.7531533,
+            reviewIDs: []
         )
     ]
 } 

@@ -9,23 +9,29 @@ struct HomeView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            SpotListView()
+            BuildingsListView()
                 .tabItem {
-                    Label("Spots", systemImage: "list.bullet")
+                    Label("Buildings", systemImage: "building.2")
                 }
                 .tag(0)
+            
+            SpotListView()
+                .tabItem {
+                    Label("All Spots", systemImage: "list.bullet")
+                }
+                .tag(1)
             
             MapView()
                 .tabItem {
                     Label("Map", systemImage: "map")
                 }
-                .tag(1)
+                .tag(2)
             
             FavoritesView()
                 .tabItem {
                     Label("Favorites", systemImage: "heart")
                 }
-                .tag(2)
+                .tag(3)
         }
         .accentColor(.utdOrange)
         .onAppear {

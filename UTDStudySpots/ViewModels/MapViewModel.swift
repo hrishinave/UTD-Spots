@@ -11,6 +11,7 @@ class MapViewModel: ObservableObject {
     @Published var userTrackingMode: MKUserTrackingMode = .none
     @Published var showUserLocation: Bool = true
     @Published var selectedAnnotation: StudySpot?
+    @Published var selectedBuilding: Building?
     @Published var routeOverlays: [MKOverlay] = []
     
     private var cancellables = Set<AnyCancellable>()
@@ -24,6 +25,17 @@ class MapViewModel: ObservableObject {
                 title: spot.name,
                 subtitle: "Tap for details",
                 spot: spot
+            )
+        }
+    }
+    
+    func createBuildingAnnotations(from buildings: [Building]) -> [BuildingAnnotation] {
+        return buildings.map { building in
+            BuildingAnnotation(
+                coordinate: building.coordinates,
+                title: building.name,
+                subtitle: building.code,
+                building: building
             )
         }
     }
@@ -52,6 +64,28 @@ class MapViewModel: ObservableObject {
         }
     }
     
+    func calculateRouteToBuilding(from userLocation: CLLocationCoordinate2D, to building: Building) {
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: building.coordinates))
+        request.transportType = .walking
+        
+        let directions = MKDirections(request: request)
+        directions.calculate { [weak self] response, error in
+            guard let self = self, let route = response?.routes.first else {
+                print("Error calculating route: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            
+            self.routeOverlays = [route.polyline]
+            
+            // Adjust the map view to show the entire route
+            let padding: CGFloat = 50
+            let mapRect = route.polyline.boundingMapRect
+            self.region = MKCoordinateRegion(mapRect)
+        }
+    }
+    
     // MARK: - Region Management
     
     func focusOn(spot: StudySpot) {
@@ -60,6 +94,14 @@ class MapViewModel: ObservableObject {
             span: MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
         )
         selectedAnnotation = spot
+    }
+    
+    func focusOn(building: Building) {
+        region = MKCoordinateRegion(
+            center: building.coordinates,
+            span: MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
+        )
+        selectedBuilding = building
     }
     
     func resetRegionToUTD() {
@@ -82,6 +124,22 @@ class StudySpotAnnotation: NSObject, MKAnnotation {
         self.title = title
         self.subtitle = subtitle
         self.spot = spot
+        super.init()
+    }
+}
+
+// Custom annotation class for buildings
+class BuildingAnnotation: NSObject, MKAnnotation {
+    let coordinate: CLLocationCoordinate2D
+    let title: String?
+    let subtitle: String?
+    let building: Building
+    
+    init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, building: Building) {
+        self.coordinate = coordinate
+        self.title = title
+        self.subtitle = subtitle
+        self.building = building
         super.init()
     }
 } 

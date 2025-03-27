@@ -6,23 +6,22 @@ struct MapView: View {
     @EnvironmentObject var locationService: LocationService
     @StateObject var mapViewModel = MapViewModel()
     
-    @State private var selectedSpot: StudySpot?
-    @State private var showingDetail = false
+    @State private var selectedBuilding: Building?
+    @State private var showingBuildingDetail = false
     
     var body: some View {
         ZStack {
             // Map
-            MapViewRepresentable(
+            BuildingMapViewRepresentable(
                 region: $mapViewModel.region,
-                annotations: mapViewModel.createAnnotations(from: viewModel.studySpots),
-                selectedAnnotation: $mapViewModel.selectedAnnotation,
+                annotations: mapViewModel.createBuildingAnnotations(from: viewModel.buildings),
+                selectedBuilding: $mapViewModel.selectedBuilding,
                 showUserLocation: mapViewModel.showUserLocation,
                 userTrackingMode: $mapViewModel.userTrackingMode,
                 routeOverlays: mapViewModel.routeOverlays,
                 onAnnotationSelected: { annotation in
-                    if let spot = annotation as? StudySpotAnnotation {
-                        selectedSpot = spot.spot
-                        showingDetail = true
+                    if let buildingAnnotation = annotation as? BuildingAnnotation {
+                        selectedBuilding = buildingAnnotation.building
                     }
                 }
             )
@@ -61,41 +60,73 @@ struct MapView: View {
                 
                 Spacer()
                 
-                // Bottom card for selected spot
-                if let spot = selectedSpot, let building = viewModel.buildingForSpot(spot) {
+                // Bottom card for selected building
+                if let building = selectedBuilding {
                     VStack {
-                        SpotCardView(
-                            spot: spot,
-                            building: building,
-                            onFavoriteToggle: { viewModel.toggleFavorite(for: $0) },
-                            distance: userDistanceToSpot(spot)
-                        )
+                        // Building info card
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(building.name)
+                                        .font(.headline)
+                                        .foregroundColor(.utdGreen)
+                                    
+                                    Text(building.code)
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                                
+                                Spacer()
+                                
+                                // Availability badge
+                                Text(building.isCurrentlyOpen ? "Open" : "Closed")
+                                    .font(.caption)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(building.isCurrentlyOpen ? Color.utdGreen.opacity(0.2) : Color.red.opacity(0.2))
+                                    .foregroundColor(building.isCurrentlyOpen ? .utdGreen : .red)
+                                    .cornerRadius(4)
+                            }
+                            
+                            // Address
+                            Text(building.address)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            
+                            // Today's hours
+                            if let todayHours = getTodayHours(for: building) {
+                                Text("Today: \(todayHours)")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
                         .padding()
                         
+                        // Action buttons
                         HStack {
                             Button(action: {
-                                showingDetail = true
+                                showingBuildingDetail = true
                             }) {
-                                Text("View Details")
+                                Text("View Study Spots")
                                     .foregroundColor(.white)
                                     .padding()
                                     .frame(maxWidth: .infinity)
-                                    .background(Color.blue)
+                                    .background(Color.utdOrange)
                                     .cornerRadius(8)
                             }
                             
                             if let userLocation = locationService.userLocation {
                                 Button(action: {
-                                    mapViewModel.calculateRoute(
+                                    mapViewModel.calculateRouteToBuilding(
                                         from: userLocation.coordinate,
-                                        to: spot
+                                        to: building
                                     )
                                 }) {
                                     Text("Directions")
                                         .foregroundColor(.white)
                                         .padding()
                                         .frame(maxWidth: .infinity)
-                                        .background(Color.green)
+                                        .background(Color.utdGreen)
                                         .cornerRadius(8)
                                 }
                             }
@@ -112,14 +143,14 @@ struct MapView: View {
             }
         }
         .navigationBarHidden(true)
-        .sheet(isPresented: $showingDetail, onDismiss: {
+        .sheet(isPresented: $showingBuildingDetail, onDismiss: {
             // Adjust map focus when returning from detail view
-            if let spot = selectedSpot {
-                mapViewModel.focusOn(spot: spot)
+            if let building = selectedBuilding {
+                mapViewModel.focusOn(building: building)
             }
         }) {
-            if let spot = selectedSpot {
-                SpotDetailView(spot: spot)
+            if let building = selectedBuilding {
+                BuildingDetailView(building: building)
             }
         }
         .onAppear {
@@ -158,24 +189,19 @@ struct MapView: View {
         }
     }
     
-    // Calculate distance from user to spot if location is available
-    private func userDistanceToSpot(_ spot: StudySpot) -> Double? {
-        guard let userLocation = locationService.userLocation else {
-            return nil
-        }
-        
-        return viewModel.calculateDistance(
-            from: userLocation.coordinate,
-            to: spot
-        )
+    private func getTodayHours(for building: Building) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE" // Full weekday name
+        let weekday = dateFormatter.string(from: Date())
+        return building.openingHours[weekday]
     }
 }
 
-// Map Representable to bridge UIKit's MKMapView
-struct MapViewRepresentable: UIViewRepresentable {
+// Map Representable to bridge UIKit's MKMapView for buildings
+struct BuildingMapViewRepresentable: UIViewRepresentable {
     @Binding var region: MKCoordinateRegion
-    let annotations: [StudySpotAnnotation]
-    @Binding var selectedAnnotation: StudySpot?
+    let annotations: [BuildingAnnotation]
+    @Binding var selectedBuilding: Building?
     let showUserLocation: Bool
     @Binding var userTrackingMode: MKUserTrackingMode
     let routeOverlays: [MKOverlay]
@@ -196,15 +222,15 @@ struct MapViewRepresentable: UIViewRepresentable {
         mapView.userTrackingMode = userTrackingMode
         
         // Update annotations
-        let existingAnnotations = mapView.annotations.compactMap { $0 as? StudySpotAnnotation }
+        let existingAnnotations = mapView.annotations.compactMap { $0 as? BuildingAnnotation }
         let newAnnotations = annotations.filter { annotation in
-            !existingAnnotations.contains { $0.spot.id == annotation.spot.id }
+            !existingAnnotations.contains { $0.building.id == annotation.building.id }
         }
         mapView.addAnnotations(newAnnotations)
         
         // Remove old annotations
         let annotationsToRemove = existingAnnotations.filter { existingAnnotation in
-            !annotations.contains { $0.spot.id == existingAnnotation.spot.id }
+            !annotations.contains { $0.building.id == existingAnnotation.building.id }
         }
         mapView.removeAnnotations(annotationsToRemove)
         
@@ -218,15 +244,15 @@ struct MapViewRepresentable: UIViewRepresentable {
     }
     
     class Coordinator: NSObject, MKMapViewDelegate {
-        var parent: MapViewRepresentable
+        var parent: BuildingMapViewRepresentable
         
-        init(_ parent: MapViewRepresentable) {
+        init(_ parent: BuildingMapViewRepresentable) {
             self.parent = parent
         }
         
         func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-            if let annotation = annotation as? StudySpotAnnotation {
-                parent.selectedAnnotation = annotation.spot
+            if let annotation = annotation as? BuildingAnnotation {
+                parent.selectedBuilding = annotation.building
                 parent.onAnnotationSelected(annotation)
             }
         }
@@ -246,35 +272,31 @@ struct MapViewRepresentable: UIViewRepresentable {
                 return nil
             }
             
-            let identifier = "studySpot"
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            let identifier = "building"
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
             
             if annotationView == nil {
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 annotationView?.canShowCallout = true
-                
-                let infoButton = UIButton(type: .detailDisclosure)
-                annotationView?.rightCalloutAccessoryView = infoButton
+                annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             } else {
                 annotationView?.annotation = annotation
             }
             
-            if let markerView = annotationView as? MKMarkerAnnotationView {
-                markerView.markerTintColor = .blue
-                
-                // Customize marker based on study spot features
-                if let spotAnnotation = annotation as? StudySpotAnnotation {
-                    if spotAnnotation.spot.features.contains("Quiet") {
-                        markerView.glyphImage = UIImage(systemName: "book")
-                    } else if spotAnnotation.spot.features.contains("Group Study") {
-                        markerView.glyphImage = UIImage(systemName: "person.3")
-                    } else {
-                        markerView.glyphImage = UIImage(systemName: "graduationcap")
-                    }
-                }
+            // Customize building pins
+            if let buildingAnnotation = annotation as? BuildingAnnotation {
+                annotationView?.markerTintColor = UIColor(Color.utdGreen)
+                annotationView?.glyphImage = UIImage(systemName: "building.2")
             }
             
             return annotationView
+        }
+        
+        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+            if let annotation = view.annotation as? BuildingAnnotation {
+                parent.selectedBuilding = annotation.building
+                parent.onAnnotationSelected(annotation)
+            }
         }
     }
 }

@@ -44,8 +44,8 @@ extension StudySpot {
             description: "Quiet study area with individual desks and natural lighting.",
             features: ["Quiet", "Individual Study", "Power Outlets", "WiFi"],
             capacity: 100,
-            latitude: 32.9888883,
-            longitude: -96.7501263,
+            latitude: 32.98783650172627,
+            longitude: -96.7478852394324,
             reviewIDs: [],
             isFavorite: false
         ),
@@ -57,8 +57,8 @@ extension StudySpot {
             description: "Open collaboration space with comfortable seating.",
             features: ["Group Study", "Power Outlets", "WiFi", "Coffee Nearby"],
             capacity: 40,
-            latitude: 32.9868993,
-            longitude: -96.7531533,
+            latitude: 32.98519557093538,
+            longitude: -96.74690097620241,
             reviewIDs: [],
             isFavorite: true
         ),
@@ -77,7 +77,7 @@ extension StudySpot {
         ),
         StudySpot(
             id: UUID(),
-            name: "Founders Building - 1st Floor",
+            name: "Founders Building - Founders Lab",
             buildingID: Building.samples[3].id,
             floor: 1,
             description: "Open collaboration space with comfortable seating.",
@@ -85,7 +85,35 @@ extension StudySpot {
             capacity: 40,
             latitude: 32.9868993,
             longitude: -96.7531533,
-            reviewIDs: []
+            reviewIDs: [],
+            isFavorite: false
+        ),
+        StudySpot(
+            id: UUID(),
+            name: "ECSW 3.335 - Engineering Open Access Lab",
+            buildingID: Building.samples[4].id,
+            floor: 3,
+            description: "Engineering Open Access Lab with computer workstations and study space.",
+            features: ["Computer Lab", "Power Outlets", "WiFi", "Quiet"],
+            capacity: 40,
+            latitude: 32.98608739628137,
+            longitude: -96.75152005916523,
+            reviewIDs: [],
+            isFavorite: false
+            
+        ),
+        StudySpot(
+            id: UUID(),
+            name: "ECSS 2.103/2.104 - Computer Labs",
+            buildingID: Building.samples[5].id,
+            floor: 2,
+            description: "Large computer labs with plenty of workstations and space for collaborative work.",
+            features: ["Computer Lab", "Power Outlets", "WiFi", "Group Study"],
+            capacity: 128,
+            latitude: 32.98638887491088,
+            longitude: -96.75046863323148,
+            reviewIDs: [],
+            isFavorite: false
         )
     ]
 } 

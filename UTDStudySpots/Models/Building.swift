@@ -1,4 +1,5 @@
 import Foundation
+import CoreLocation
 
 struct Building: Identifiable, Codable, Hashable {
     let id: UUID
@@ -7,6 +8,14 @@ struct Building: Identifiable, Codable, Hashable {
     let address: String
     let openingHours: [String: String] // Dictionary of day -> hours (e.g. "Monday": "7:00 AM - 11:00 PM")
     let imageNames: [String]
+    
+    // Coordinates for map display
+    var latitude: Double
+    var longitude: Double
+    
+    var coordinates: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
     
     // Computed property to check if building is currently open
     var isCurrentlyOpen: Bool {
@@ -41,7 +50,9 @@ extension Building {
                 "Saturday": "9:00 AM - 6:00 PM",
                 "Sunday": "12:00 PM - 12:00 AM"
             ],
-            imageNames: ["mcdermott_exterior", "mcdermott_interior"]
+            imageNames: ["mcdermott_exterior", "mcdermott_interior"],
+            latitude: 32.9888883,
+            longitude: -96.7501263
         ),
         Building(
             id: UUID(),
@@ -57,7 +68,9 @@ extension Building {
                 "Saturday": "9:00 AM - 5:00 PM",
                 "Sunday": "12:00 PM - 5:00 PM"
             ],
-            imageNames: ["jsom_exterior", "jsom_interior"]
+            imageNames: ["jsom_exterior", "jsom_interior"],
+            latitude: 32.9868993,
+            longitude: -96.7531533
         ),
         Building(
             id: UUID(),
@@ -73,7 +86,9 @@ extension Building {
                 "Saturday": "9:00 AM - 6:00 PM",
                 "Sunday": "12:00 PM - 9:00 PM"
             ],
-            imageNames: ["slc_exterior", "slc_interior"]
+            imageNames: ["slc_exterior", "slc_interior"],
+            latitude: 32.9901393,
+            longitude: -96.7503553
         ),
         Building(
             id: UUID(),
@@ -89,7 +104,45 @@ extension Building {
                 "Saturday": "10:00am – 6:45pm",
                 "Sunday": "12:00 PM - 9:45 PM"
             ],
-            imageNames: ["founders_exterior", "founders_interior"]
+            imageNames: ["founders_exterior", "founders_interior"],
+            latitude: 32.9876543,
+            longitude: -96.7509876
+        ),
+        Building(
+            id: UUID(),
+            name: "Erik Jonsson School of Computer Science (West)",
+            code: "ECSW",
+            address: "800 W Campbell Rd, Richardson, TX 75080",
+            openingHours: [
+                "Monday": "8:00 AM - 11:00 PM",
+                "Tuesday": "8:00 AM - 11:00 PM",
+                "Wednesday": "8:00 AM - 11:00 PM",
+                "Thursday": "8:00 AM - 11:00 PM",
+                "Friday": "8:00 AM - 11:00 PM",
+                "Saturday": "8:00 AM - 7:00 PM",
+                "Sunday": "8:00 AM - 7:00 PM"
+            ],
+            imageNames: ["ecsw_exterior", "ecsw_interior"],
+            latitude: 32.9890000,
+            longitude: -96.7510000
+        ),
+        Building(
+            id: UUID(),
+            name: "Erik Jonsson School of Computer Science (South)",
+            code: "ECSS",
+            address: "800 W Campbell Rd, Richardson, TX 75080",
+            openingHours: [
+                "Monday": "8:00 AM - 11:00 PM",
+                "Tuesday": "8:00 AM - 11:00 PM",
+                "Wednesday": "8:00 AM - 11:00 PM",
+                "Thursday": "8:00 AM - 11:00 PM",
+                "Friday": "8:00 AM - 11:00 PM",
+                "Saturday": "8:00 AM - 7:00 PM",
+                "Sunday": "8:00 AM - 7:00 PM"
+            ],
+            imageNames: ["ecss_exterior", "ecss_interior"],
+            latitude: 32.9892000,
+            longitude: -96.7515000
         )
     ]
 }

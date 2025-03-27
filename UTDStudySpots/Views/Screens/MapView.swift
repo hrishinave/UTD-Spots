@@ -8,6 +8,7 @@ struct MapView: View {
     
     @State private var selectedBuilding: Building?
     @State private var showingBuildingDetail = false
+    @State private var showingDirectionsActionSheet = false
     
     var body: some View {
         ZStack {
@@ -115,12 +116,9 @@ struct MapView: View {
                                     .cornerRadius(8)
                             }
                             
-                            if let userLocation = locationService.userLocation {
+                            if locationService.userLocation != nil {
                                 Button(action: {
-                                    mapViewModel.calculateRouteToBuilding(
-                                        from: userLocation.coordinate,
-                                        to: building
-                                    )
+                                    showingDirectionsActionSheet = true
                                 }) {
                                     Text("Directions")
                                         .foregroundColor(.white)
@@ -153,6 +151,9 @@ struct MapView: View {
                 BuildingDetailView(building: building)
             }
         }
+        .actionSheet(isPresented: $showingDirectionsActionSheet) {
+            directionActionSheet()
+        }
         .onAppear {
             locationService.startUpdatingLocation()
         }
@@ -162,6 +163,30 @@ struct MapView: View {
     }
     
     // MARK: - Helper Methods
+    
+    private func directionActionSheet() -> ActionSheet {
+        guard let building = selectedBuilding else {
+            return ActionSheet(title: Text("Error"), message: Text("No building selected"), buttons: [.cancel()])
+        }
+        
+        let title = Text("Directions to \(building.name)")
+        let message = Text("Choose how to get directions")
+        
+        return ActionSheet(title: title, message: message, buttons: [
+            .default(Text("Show in App")) { 
+                if let userLocation = locationService.userLocation {
+                    mapViewModel.calculateRouteToBuilding(
+                        from: userLocation.coordinate,
+                        to: building
+                    )
+                }
+            },
+            .default(Text("Open in Apple Maps")) {
+                MapUtils.openDirectionsInMaps(to: building.coordinates, destinationName: building.name)
+            },
+            .cancel()
+        ])
+    }
     
     private var locationTrackingImageName: String {
         switch mapViewModel.userTrackingMode {

@@ -11,9 +11,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let locationService = LocationService()
         
         // Create the SwiftUI view that provides the window contents.
-        let contentView = HomeView()
-            .environmentObject(viewModel)
-            .environmentObject(locationService)
+        let contentView = Text("Hello World")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.white)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

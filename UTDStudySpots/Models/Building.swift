@@ -51,8 +51,8 @@ extension Building {
                 "Sunday": "12:00 PM - 12:00 AM"
             ],
             imageNames: ["mcdermott_exterior", "mcdermott_interior"],
-            latitude: 32.9888883,
-            longitude: -96.7501263
+            latitude: 32.98731870864668,
+            longitude: -96.74773635837403
         ),
         Building(
             id: UUID(),
@@ -69,8 +69,8 @@ extension Building {
                 "Sunday": "12:00 PM - 5:00 PM"
             ],
             imageNames: ["jsom_exterior", "jsom_interior"],
-            latitude: 32.9868993,
-            longitude: -96.7531533
+            latitude: 32.985297924246915,
+            longitude: -96.74697043881872
         ),
         Building(
             id: UUID(),
@@ -105,8 +105,8 @@ extension Building {
                 "Sunday": "12:00 PM - 9:45 PM"
             ],
             imageNames: ["founders_exterior", "founders_interior"],
-            latitude: 32.9876543,
-            longitude: -96.7509876
+            latitude: 32.987867521651346, 
+            longitude: -96.74904891953264
         ),
         Building(
             id: UUID(),
@@ -123,8 +123,8 @@ extension Building {
                 "Sunday": "8:00 AM - 7:00 PM"
             ],
             imageNames: ["ecsw_exterior", "ecsw_interior"],
-            latitude: 32.9890000,
-            longitude: -96.7510000
+            latitude: 32.98643879369642, 
+            longitude: -96.7516191834753    
         ),
         Building(
             id: UUID(),
@@ -141,8 +141,8 @@ extension Building {
                 "Sunday": "8:00 AM - 7:00 PM"
             ],
             imageNames: ["ecss_exterior", "ecss_interior"],
-            latitude: 32.9892000,
-            longitude: -96.7515000
+            latitude: 32.986302571253994, 
+            longitude: -96.75052297294609
         )
     ]
 }

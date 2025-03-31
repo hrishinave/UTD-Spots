@@ -4,28 +4,15 @@ import CoreLocation
 struct SpotCardView: View {
     let spot: StudySpot
     let building: Building
-    var onFavoriteToggle: ((StudySpot) -> Void)?
-    var distance: Double?
-    
-    private var distanceText: String? {
-        guard let distance = distance else { return nil }
-        
-        if distance < 1000 {
-            return "\(Int(distance))m away"
-        } else {
-            let km = distance / 1000
-            return String(format: "%.1f km away", km)
-        }
-    }
+    let onFavoriteToggle: (StudySpot) -> Void
+    let distance: Double?
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(spot.name)
                         .font(.headline)
-                        .foregroundColor(.utdGreen)
-                    
                     Text(building.name)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
@@ -33,69 +20,54 @@ struct SpotCardView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    onFavoriteToggle?(spot)
-                }) {
+                Button {
+                    onFavoriteToggle(spot)
+                } label: {
                     Image(systemName: spot.isFavorite ? "heart.fill" : "heart")
-                        .foregroundColor(spot.isFavorite ? .utdOrange : .gray)
+                        .foregroundColor(spot.isFavorite ? .red : .gray)
+                }
+            }
+            
+            Text(spot.description)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .lineLimit(2)
+            
+            HStack {
+                // Open/Closed Status
+                HStack(spacing: 4) {
+                    Circle()
+                        .fill(spot.isCurrentlyOpen ? Color.green : Color.red)
+                        .frame(width: 8, height: 8)
+                    Text(spot.isCurrentlyOpen ? "Open" : "Closed")
+                        .foregroundColor(spot.isCurrentlyOpen ? .green : .red)
+                        .font(.subheadline)
+                }
+                
+                Spacer()
+                
+                if let distance = distance {
+                    Text(String(format: "%.0f ft", distance))
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                 }
             }
             
             HStack {
-                // Feature badges
                 ForEach(spot.features.prefix(3), id: \.self) { feature in
                     Text(feature)
                         .font(.caption)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
-                        .background(Color.utdOrange.opacity(0.2))
-                        .foregroundColor(.utdOrange)
+                        .background(Color.secondary.opacity(0.1))
                         .cornerRadius(4)
                 }
-                
-                if spot.features.count > 3 {
-                    Text("+\(spot.features.count - 3)")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                
-                Spacer()
-                
-                if let distanceText = distanceText {
-                    Text(distanceText)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-            }
-            
-            HStack {
-                // Rating stars
-                ForEach(0..<5) { index in
-                    Image(systemName: index < Int(spot.averageRating) ? "star.fill" : "star")
-                        .foregroundColor(.utdOrange)
-                        .font(.caption)
-                }
-                
-                Text(String(format: "%.1f", spot.averageRating))
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                
-                Spacer()
-                
-                // Availability badge
-                Text(spot.isOpen ? "Open" : "Closed")
-                    .font(.caption)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(spot.isOpen ? Color.utdGreen.opacity(0.2) : Color.red.opacity(0.2))
-                    .foregroundColor(spot.isOpen ? .utdGreen : .red)
-                    .cornerRadius(4)
             }
         }
         .padding()
         .background(Color(.systemBackground))
         .cornerRadius(12)
-        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+        .shadow(radius: 2)
     }
 }
 
@@ -104,9 +76,10 @@ struct SpotCardView_Previews: PreviewProvider {
         SpotCardView(
             spot: StudySpot.samples[0],
             building: Building.samples[0],
+            onFavoriteToggle: { _ in }, 
             distance: 250
         )
         .previewLayout(.sizeThatFits)
         .padding()
     }
-} 
+}

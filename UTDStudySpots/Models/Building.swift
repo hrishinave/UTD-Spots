@@ -8,7 +8,7 @@ struct Building: Identifiable, Codable, Hashable {
     let address: String
     let openingHours: [String: String] // Dictionary of day -> hours (e.g. "Monday": "7:00 AM - 11:00 PM")
     let imageNames: [String]
-    
+  
     // Coordinates for map display
     var latitude: Double
     var longitude: Double
@@ -19,8 +19,52 @@ struct Building: Identifiable, Codable, Hashable {
     
     // Computed property to check if building is currently open
     var isCurrentlyOpen: Bool {
-        // In a real app, this would check the current time against opening hours
-        return true
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let today = dateFormatter.string(from: Date())
+        
+        guard let hours = openingHours[today] else {
+            return false
+        }
+        
+        let times = hours.components(separatedBy: "-").map { $0.trimmingCharacters(in: .whitespaces)}
+        guard times.count == 2 else { return false }
+        
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "h:mm a"
+        timeFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        guard let openTime = timeFormatter.date(from: times[0]),
+              let closeTime = timeFormatter.date(from: times[1]) else {
+            return false
+        }
+        
+        let calendar = Calendar.current
+        let now = Date()
+        let todayComponents = calendar.dateComponents([.year, .month, .day], from: now)
+        
+        var openComponents = calendar.dateComponents([.hour, .minute], from: openTime)
+        openComponents.year = todayComponents.year
+        openComponents.month = todayComponents.month
+        openComponents.day = todayComponents.day
+        
+        var closeComponents = calendar.dateComponents([.hour, .minute], from: closeTime)
+        closeComponents.year = todayComponents.year
+        closeComponents.month = todayComponents.month
+        closeComponents.day = todayComponents.day
+        
+        guard let openDate = calendar.date(from: openComponents),
+              let closeDate = calendar.date(from: closeComponents) else {
+            return false
+        }
+        
+        if closeDate < openDate {
+            if let adjustedCloseDate = calendar.date(byAdding: .day, value: 1, to: closeDate) {
+                return now >= openDate && now <= adjustedCloseDate
+            }
+        }
+        
+        return now >= openDate && now <= closeDate
     }
     
     // Implement Hashable conformance
@@ -78,12 +122,12 @@ extension Building {
             code: "SLC",
             address: "800 W Campbell Rd, Richardson, TX 75080",
             openingHours: [
-                "Monday": "9 PM–12 AM",
-                "Tuesday"  :"9 PM–12 AM",
-                "Wednesday"  :"9 PM–12 AM",
-                "Thursday"  :"9 PM–12 AM",
-                "Friday"  :"9 PM–12 AM",
-                "Saturday"  :"12 PM–8 PM"
+                "Monday": "9:00 AM - 12:00 AM",
+                "Tuesday": "9:00 AM - 12:00 AM",
+                "Wednesday": "9:00 AM - 12:00 AM",
+                "Thursday": "9:00 AM - 12:00 AM",
+                "Friday": "9:00 AM - 12:00 AM",
+                "Saturday": "12:00 PM - 8:00 PM"
             ],
             imageNames: ["slc_exterior", "slc_interior"],
             latitude: 32.9901393,
@@ -95,12 +139,12 @@ extension Building {
             code: "FO",
             address: "800 W Campbell Rd, Richardson, TX 75080",
             openingHours: [
-                "Monday": "8:00am – 10:45pm",
-                "Tuesday": "8:00am – 10:45pm",
-                "Wednesday": "8:00am – 10:45pm",
-                "Thursday": "8:00am – 10:45pm",
-                "Friday": "8:00am – 9:45pm",
-                "Saturday": "10:00am – 6:45pm",
+                "Monday": "8:00 AM - 10:45 PM",
+                "Tuesday": "8:00 AM - 10:45 PM",
+                "Wednesday": "8:00 AM - 10:45 PM",
+                "Thursday": "8:00 AM - 10:45 PM",
+                "Friday": "8:00 AM - 9:45 PM",
+                "Saturday": "10:00 AM - 6:45 PM",
                 "Sunday": "12:00 PM - 9:45 PM"
             ],
             imageNames: ["founders_exterior", "founders_interior"],

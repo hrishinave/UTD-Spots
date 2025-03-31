@@ -1,207 +1,148 @@
 import SwiftUI
-
+import CoreLocation
 struct BuildingDetailView: View {
     @EnvironmentObject var viewModel: StudySpotsViewModel
     @EnvironmentObject var locationService: LocationService
     let building: Building
-    @Environment(\.presentationMode) var presentationMode
-    @State private var showingDirectionsActionSheet = false
+    @Environment(\.dismiss) private var dismiss
     
-    var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
-                // Building header with image
-                if !building.imageNames.isEmpty, let imageName = building.imageNames.first {
-                    Image(imageName)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(height: 200)
-                        .clipped()
-                        .overlay(
-                            VStack {
-                                Spacer()
-                                HStack {
-                                    VStack(alignment: .leading) {
-                                        Text(building.name)
-                                            .font(.title.bold())
-                                            .foregroundColor(.white)
-                                        Text(building.code)
-                                            .font(.headline)
-                                            .foregroundColor(.white.opacity(0.9))
-                                    }
-                                    .padding()
-                                    .shadow(radius: 3)
-                                    Spacer()
-                                }
-                                .background(
-                                    LinearGradient(
-                                        gradient: Gradient(colors: [.black.opacity(0.7), .clear]),
-                                        startPoint: .bottom,
-                                        endPoint: .top
-                                    )
-                                )
-                            }
-                        )
-                } else {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(building.name)
-                                .font(.title.bold())
-                            Text(building.code)
-                                .font(.headline)
-                                .foregroundColor(.secondary)
-                        }
-                        .padding()
-                        Spacer()
-                    }
-                    .background(Color.utdGreen.opacity(0.1))
-                }
-                
-                // Address and Directions Button
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(building.address)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        showingDirectionsActionSheet = true
-                    }) {
-                        Label("Directions", systemImage: "map")
-                            .font(.subheadline)
-                            .foregroundColor(.utdGreen)
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.vertical, 8)
-                
-                // Hours section
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Hours")
-                        .font(.headline)
-                        .foregroundColor(.utdGreen)
-                        .padding(.horizontal)
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        ForEach(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], id: \.self) { day in
-                            if let hours = building.openingHours[day] {
-                                HStack {
-                                    Text(day)
-                                        .foregroundColor(.secondary)
-                                        .frame(width: 100, alignment: .leading)
-                                    Text(hours)
-                                        .foregroundColor(.primary)
-                                    Spacer()
-                                }
-                                .padding(.horizontal)
-                                .padding(.vertical, 2)
-                            }
-                        }
-                    }
-                    .padding(.vertical, 4)
-                }
-                .padding(.vertical)
-                
-                // Divider
-                Divider()
-                    .padding(.horizontal)
-                
-                // Study spots in this building
-                VStack(alignment: .leading) {
-                    Text("Study Spots")
-                        .font(.headline)
-                        .foregroundColor(.utdGreen)
-                        .padding(.horizontal)
-                        .padding(.top, 8)
-                    
-                    if spotsInBuilding.isEmpty {
-                        Text("No study spots available for this building.")
-                            .foregroundColor(.secondary)
-                            .padding()
-                    } else {
-                        List {
-                            ForEach(spotsInBuilding) { spot in
-                                NavigationLink(destination: SpotDetailView(spot: spot)) {
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        Text(spot.name)
-                                            .font(.headline)
-                                        
-                                        HStack {
-                                            Text("Floor \(spot.floor)")
-                                                .foregroundColor(.secondary)
-                                                .font(.subheadline)
-                                            
-                                            Spacer()
-                                            
-                                            Text("\(spot.capacity) seats")
-                                                .foregroundColor(.secondary)
-                                                .font(.subheadline)
-                                        }
-                                        
-                                        // Feature tags
-                                        ScrollView(.horizontal, showsIndicators: false) {
-                                            HStack {
-                                                ForEach(spot.features.prefix(3), id: \.self) { feature in
-                                                    Text(feature)
-                                                        .font(.caption)
-                                                        .padding(.horizontal, 8)
-                                                        .padding(.vertical, 4)
-                                                        .background(Color.utdOrange.opacity(0.2))
-                                                        .foregroundColor(.utdOrange)
-                                                        .cornerRadius(4)
-                                                }
-                                                
-                                                if spot.features.count > 3 {
-                                                    Text("+\(spot.features.count - 3)")
-                                                        .font(.caption)
-                                                        .foregroundColor(.secondary)
-                                                }
-                                            }
-                                        }
-                                    }
-                                    .padding(.vertical, 4)
-                                }
-                            }
-                        }
-                        .listStyle(PlainListStyle())
-                    }
-                }
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(building.name)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("Done")
-                    }
-                }
-            }
-            .actionSheet(isPresented: $showingDirectionsActionSheet) {
-                directionActionSheet()
-            }
+    private var spotsInBuilding: [StudySpot] {
+        return viewModel.studySpots.filter { spot in
+            spot.buildingID == building.id
         }
     }
     
-    private func directionActionSheet() -> ActionSheet {
-        let title = Text("Directions to \(building.name)")
-        let message = Text("Choose how to get directions")
-        
-        return ActionSheet(title: title, message: message, buttons: [
-            .default(Text("Open in Apple Maps")) {
-                MapUtils.openDirectionsInMaps(to: building.coordinates, destinationName: building.name)
-            },
-            .cancel()
-        ])
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                // Header Section
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(building.name)
+                        .font(.title)
+                        .fontWeight(.bold)
+                    
+                    Text(building.code)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    
+                    HStack {
+                        Text(building.address)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        
+                        Spacer()
+                        
+                        Button {
+                            // Open in Maps
+                            let url = URL(string: "maps://?q=\(building.latitude),\(building.longitude)")
+                            if let url = url, UIApplication.shared.canOpenURL(url) {
+                                UIApplication.shared.open(url)
+                            }
+                        } label: {
+                            Label("Directions", systemImage: "location.fill")
+                                .font(.subheadline)
+                        }
+                    }
+                }
+                .padding(.horizontal)
+                
+                // Hours Section
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Hours")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    
+                    ForEach(Calendar.current.weekdaySymbols, id: \.self) { day in
+                        if let hours = building.openingHours[day] {
+                            HStack {
+                                Text(day)
+                                    .frame(width: 100, alignment: .leading)
+                                Text(hours)
+                                Spacer()
+                            }
+                        }
+                    }
+                }
+                .padding(.horizontal)
+                
+                // Study Spots Section
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Study Spots")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .padding(.horizontal)
+                    
+                    if spotsInBuilding.isEmpty {
+                        Text("No study spots available")
+                            .foregroundColor(.secondary)
+                            .padding()
+                    } else {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 16) {
+                                ForEach(spotsInBuilding) { spot in
+                                    SpotCardView(
+                                        spot: spot,
+                                        building: building,
+                                        onFavoriteToggle: { spot in
+                                            viewModel.toggleFavorite(for: spot)
+                                        },
+                                        distance: viewModel.calculateDistance(
+                                            from: locationService.userLocation?.coordinate ?? CLLocationCoordinate2D(),
+                                            to: spot
+                                        )
+                                    )
+                                    .frame(width: 300)
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
+                    }
+                }
+            }
+            .padding(.vertical)
+        }
+        .navigationBarTitleDisplayMode(.inline)
+
     }
+}
+
+struct StudySpotCard: View {
+    let spot: StudySpot
     
-    // Get study spots for this building
-    private var spotsInBuilding: [StudySpot] {
-        return viewModel.studySpots.filter { $0.buildingID == building.id }
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.secondary.opacity(0.1))
+            
+            VStack(alignment: .leading) {
+                Text(spot.name)
+                    .font(.headline)
+                Text("Floor \(spot.floor)")
+                    .font(.subheadline)
+                Text("\(spot.capacity) seats")
+                    .font(.subheadline)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(spot.features.prefix(3), id: \.self) { feature in
+                            Text(feature)
+                                .font(.caption)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                                .background(Color.utdOrange.opacity(0.2))
+                                .foregroundColor(.utdOrange)
+                                .cornerRadius(4)
+                        }
+                        
+                        if spot.features.count > 3 {
+                            Text("+\(spot.features.count - 3)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
+            }
+            .padding()
+        }
     }
 }
 

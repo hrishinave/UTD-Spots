@@ -34,7 +34,7 @@ struct BuildingsListView: View {
                     }
                 }
             }
-            .navigationTitle("UTD Buildings")
+            .navigationTitle("Buildings")
             .listStyle(InsetGroupedListStyle())
         }
     }

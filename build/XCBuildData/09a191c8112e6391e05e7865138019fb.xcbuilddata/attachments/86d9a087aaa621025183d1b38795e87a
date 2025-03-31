@@ -1,0 +1,238 @@
+{
+  "" : {
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/UTDStudySpots-master.dia",
+    "emit-module-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/UTDStudySpots-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/UTDStudySpots-master-emit-module.dia",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/UTDStudySpots-master.swiftdeps"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/App/AppDelegate.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/AppDelegate.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/AppDelegate.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/AppDelegate.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/AppDelegate.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/AppDelegate.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/AppDelegate.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/AppDelegate.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/AppDelegate~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/App/SceneDelegate.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SceneDelegate.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SceneDelegate.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SceneDelegate.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SceneDelegate.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SceneDelegate.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SceneDelegate.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SceneDelegate.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SceneDelegate~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Models/Building.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Building.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Building.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Building.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Building.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Building.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Building.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Building.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Building~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Models/Review.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Review.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Review.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Review.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Review.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Review.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Review.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Review.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Review~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Models/StudySpot.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpot.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpot.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpot.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpot.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpot.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpot.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpot.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpot~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Services/DataService.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/DataService.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/DataService.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/DataService.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/DataService.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/DataService.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/DataService.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/DataService.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/DataService~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Services/LocationService.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/LocationService.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/LocationService.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/LocationService.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/LocationService.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/LocationService.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/LocationService.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/LocationService.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/LocationService~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Utils/Colors.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Colors.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Colors.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Colors.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Colors.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Colors.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Colors.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Colors.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Colors~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Utils/Constants.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Constants.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Constants.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Constants.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Constants.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Constants.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Constants.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Constants.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/Constants~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Utils/MapUtils.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapUtils.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapUtils.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapUtils.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapUtils.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapUtils.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapUtils.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapUtils.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapUtils~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/ViewModels/MapViewModel.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapViewModel.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapViewModel.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapViewModel.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapViewModel.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapViewModel.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapViewModel.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapViewModel.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapViewModel~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/ViewModels/StudySpotsViewModel.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpotsViewModel.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpotsViewModel.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpotsViewModel.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpotsViewModel.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpotsViewModel.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpotsViewModel.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpotsViewModel.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/StudySpotsViewModel~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Components/ReviewCardView.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/ReviewCardView.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/ReviewCardView.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/ReviewCardView.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/ReviewCardView.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/ReviewCardView.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/ReviewCardView.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/ReviewCardView.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/ReviewCardView~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Components/SpotCardView.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotCardView.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotCardView.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotCardView.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotCardView.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotCardView.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotCardView.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotCardView.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotCardView~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/BuildingDetailView.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingDetailView.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingDetailView.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingDetailView.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingDetailView.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingDetailView.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingDetailView.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingDetailView.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingDetailView~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/BuildingsListView.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingsListView.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingsListView.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingsListView.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingsListView.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingsListView.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingsListView.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingsListView.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/BuildingsListView~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/FavoritesView.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FavoritesView.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FavoritesView.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FavoritesView.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FavoritesView.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FavoritesView.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FavoritesView.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FavoritesView.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FavoritesView~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/FilterView.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FilterView.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FilterView.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FilterView.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FilterView.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FilterView.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FilterView.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FilterView.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/FilterView~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/HomeView.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/HomeView.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/HomeView.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/HomeView.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/HomeView.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/HomeView.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/HomeView.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/HomeView.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/HomeView~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/MapView.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapView.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapView.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapView.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapView.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapView.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapView.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapView.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/MapView~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/SpotDetailView.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotDetailView.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotDetailView.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotDetailView.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotDetailView.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotDetailView.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotDetailView.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotDetailView.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotDetailView~partial.swiftmodule"
+  },
+  "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/SpotListView.swift" : {
+    "const-values" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotListView.swiftconstvalues",
+    "dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotListView.d",
+    "diagnostics" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotListView.dia",
+    "index-unit-output-path" : "/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotListView.o",
+    "llvm-bc" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotListView.bc",
+    "object" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotListView.o",
+    "swift-dependencies" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotListView.swiftdeps",
+    "swiftmodule" : "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/arm64/SpotListView~partial.swiftmodule"
+  }
+}

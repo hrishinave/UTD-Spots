@@ -74,17 +74,16 @@ extension Building {
         ),
         Building(
             id: UUID(),
-            name: "Student Learning Center",
+            name: "Science Learning Center",
             code: "SLC",
             address: "800 W Campbell Rd, Richardson, TX 75080",
             openingHours: [
-                "Monday": "7:00 AM - 11:00 PM",
-                "Tuesday": "7:00 AM - 11:00 PM",
-                "Wednesday": "7:00 AM - 11:00 PM",
-                "Thursday": "7:00 AM - 11:00 PM",
-                "Friday": "7:00 AM - 9:00 PM",
-                "Saturday": "9:00 AM - 6:00 PM",
-                "Sunday": "12:00 PM - 9:00 PM"
+                "Monday": "9 PM–12 AM",
+                "Tuesday"  :"9 PM–12 AM",
+                "Wednesday"  :"9 PM–12 AM",
+                "Thursday"  :"9 PM–12 AM",
+                "Friday"  :"9 PM–12 AM",
+                "Saturday"  :"12 PM–8 PM"
             ],
             imageNames: ["slc_exterior", "slc_interior"],
             latitude: 32.9901393,

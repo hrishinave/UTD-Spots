@@ -1,0 +1,18 @@
+"/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Utils/Colors.swift":
+  object: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/Colors.o"
+  swift-dependencies: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/Colors.swiftdeps"
+  const-values: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/Colors.swiftconstvalues"
+  dependencies: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/Colors.d"
+  diagnostics: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/Colors.dia"
+"/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/MapView.swift":
+  swift-dependencies: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/MapView.swiftdeps"
+  dependencies: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/MapView.d"
+  const-values: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/MapView.swiftconstvalues"
+  object: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/MapView.o"
+  diagnostics: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/MapView.dia"
+"/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/FilterView.swift":
+  object: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/FilterView.o"
+  swift-dependencies: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/FilterView.swiftdeps"
+  dependencies: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/FilterView.d"
+  const-values: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/FilterView.swiftconstvalues"
+  diagnostics: "/Users/hrishinave/Documents/UTDStudySpots/build/UTDStudySpots.build/Debug-iphonesimulator/UTDStudySpots.build/Objects-normal/x86_64/FilterView.dia"

@@ -1,0 +1,52 @@
+{
+  "source": "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/MapView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Today: %@"
+      },
+      {
+        "comment": "",
+        "key": "Open"
+      },
+      {
+        "comment": "",
+        "key": "Closed"
+      },
+      {
+        "comment": "",
+        "key": "View Study Spots"
+      },
+      {
+        "comment": "",
+        "key": "Directions"
+      },
+      {
+        "comment": "",
+        "key": "Directions to %@"
+      },
+      {
+        "comment": "",
+        "key": "Choose how to get directions"
+      },
+      {
+        "comment": "",
+        "key": "Show in App"
+      },
+      {
+        "comment": "",
+        "key": "Open in Apple Maps"
+      },
+      {
+        "comment": "",
+        "key": "Error"
+      },
+      {
+        "comment": "",
+        "key": "No building selected"
+      }
+    ]
+  },
+  "version": 1
+}

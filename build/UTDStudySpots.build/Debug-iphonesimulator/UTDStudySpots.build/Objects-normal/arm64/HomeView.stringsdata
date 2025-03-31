@@ -1,0 +1,32 @@
+{
+  "source": "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/HomeView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Buildings"
+      },
+      {
+        "comment": "",
+        "key": "All Spots"
+      },
+      {
+        "comment": "",
+        "key": "Map"
+      },
+      {
+        "comment": "",
+        "key": "Favorites"
+      },
+      {
+        "comment": "",
+        "key": "Location Access Required"
+      },
+      {
+        "comment": "",
+        "key": "Settings"
+      }
+    ]
+  },
+  "version": 1
+}

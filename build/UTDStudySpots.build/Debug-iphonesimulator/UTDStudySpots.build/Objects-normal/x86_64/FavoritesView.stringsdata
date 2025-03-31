@@ -1,0 +1,16 @@
+{
+  "source": "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/FavoritesView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Favorites"
+      },
+      {
+        "comment": "",
+        "key": "Remove from Favorites"
+      }
+    ]
+  },
+  "version": 1
+}

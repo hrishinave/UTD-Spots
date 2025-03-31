@@ -1,0 +1,20 @@
+{
+  "source": "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/SpotListView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "UTD Study Spots"
+      },
+      {
+        "comment": "",
+        "key": "Search by name or features"
+      },
+      {
+        "comment": "",
+        "key": "Loading study spots..."
+      }
+    ]
+  },
+  "version": 1
+}

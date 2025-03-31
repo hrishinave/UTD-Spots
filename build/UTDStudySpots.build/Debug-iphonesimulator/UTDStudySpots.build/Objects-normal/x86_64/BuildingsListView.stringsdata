@@ -1,0 +1,20 @@
+{
+  "source": "/Users/hrishinave/Documents/UTDStudySpots/UTDStudySpots/Views/Screens/BuildingsListView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "UTD Buildings"
+      },
+      {
+        "comment": "",
+        "key": "Open"
+      },
+      {
+        "comment": "",
+        "key": "Closed"
+      }
+    ]
+  },
+  "version": 1
+}

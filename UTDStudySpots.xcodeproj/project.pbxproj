@@ -7,15 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA5DBEEE2D9B0A1300BD88C3 /* UTDStudySpotsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5DBEED2D9B0A1300BD88C3 /* UTDStudySpotsApp.swift */; };
 		BA6A8CC22D95E9C40074038C /* MapUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6A8CC12D95E9C40074038C /* MapUtils.swift */; };
 		BA849B302D92361B00F0B10E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA849B2F2D92361B00F0B10E /* Colors.swift */; };
 		BA849B322D9265B300F0B10E /* BuildingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA849B312D9265B300F0B10E /* BuildingDetailView.swift */; };
 		BA849B342D9265D100F0B10E /* BuildingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA849B332D9265D100F0B10E /* BuildingsListView.swift */; };
-		BA87497E2D922DEF00AD9850 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA87497D2D922DEF00AD9850 /* main.swift */; };
 		BAB2A0FB2D90EA7B005461BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAB2A0FA2D90EA7B005461BC /* Assets.xcassets */; };
 		BAB2A0FE2D90EA7B005461BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAB2A0FD2D90EA7B005461BC /* Preview Assets.xcassets */; };
-		BAB2A10B2D910B01005461BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2A10A2D910B01005461BC /* AppDelegate.swift */; };
-		BAB2A10D2D910B10005461BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2A10C2D910B10005461BC /* SceneDelegate.swift */; };
 		BAB2A10F2D922375005461BC /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2A10E2D922375005461BC /* Building.swift */; };
 		BAB2A1112D922386005461BC /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2A1102D922386005461BC /* Review.swift */; };
 		BAB2A1132D92239B005461BC /* StudySpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2A1122D92239B005461BC /* StudySpot.swift */; };
@@ -35,17 +33,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA5DBEED2D9B0A1300BD88C3 /* UTDStudySpotsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UTDStudySpotsApp.swift; path = ../UTDStudySpotsApp.swift; sourceTree = "<group>"; };
 		BA6A8CC12D95E9C40074038C /* MapUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUtils.swift; sourceTree = "<group>"; };
 		BA849B2F2D92361B00F0B10E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		BA849B312D9265B300F0B10E /* BuildingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingDetailView.swift; sourceTree = "<group>"; };
 		BA849B332D9265D100F0B10E /* BuildingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsListView.swift; sourceTree = "<group>"; };
 		BA87497B2D9227A400AD9850 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BA87497D2D922DEF00AD9850 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		BAB2A0F32D90EA7B005461BC /* UTDStudySpots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTDStudySpots.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAB2A0FA2D90EA7B005461BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BAB2A0FD2D90EA7B005461BC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		BAB2A10A2D910B01005461BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BAB2A10C2D910B10005461BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BAB2A10E2D922375005461BC /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		BAB2A1102D922386005461BC /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		BAB2A1122D92239B005461BC /* StudySpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySpot.swift; sourceTree = "<group>"; };
@@ -78,7 +74,6 @@
 		BAB2A0EA2D90EA7B005461BC = {
 			isa = PBXGroup;
 			children = (
-				BA87497D2D922DEF00AD9850 /* main.swift */,
 				BAB2A0F52D90EA7B005461BC /* UTDStudySpots */,
 				BAB2A0F42D90EA7B005461BC /* Products */,
 			);
@@ -166,8 +161,7 @@
 		BAB2A1092D90EAF4005461BC /* App */ = {
 			isa = PBXGroup;
 			children = (
-				BAB2A10A2D910B01005461BC /* AppDelegate.swift */,
-				BAB2A10C2D910B10005461BC /* SceneDelegate.swift */,
+				BA5DBEED2D9B0A1300BD88C3 /* UTDStudySpotsApp.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -275,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAB2A10F2D922375005461BC /* Building.swift in Sources */,
 				BAB2A1272D922463005461BC /* FilterView.swift in Sources */,
 				BA849B302D92361B00F0B10E /* Colors.swift in Sources */,
 				BAB2A12B2D92247A005461BC /* MapView.swift in Sources */,
@@ -282,17 +277,14 @@
 				BAB2A1172D9223C9005461BC /* LocationService.swift in Sources */,
 				BAB2A1292D92246E005461BC /* HomeView.swift in Sources */,
 				BAB2A1252D922451005461BC /* FavoritesView.swift in Sources */,
-				BAB2A10B2D910B01005461BC /* AppDelegate.swift in Sources */,
 				BAB2A1112D922386005461BC /* Review.swift in Sources */,
-				BAB2A10F2D922375005461BC /* Building.swift in Sources */,
 				BAB2A1202D922426005461BC /* ReviewCardView.swift in Sources */,
 				BAB2A1152D9223B9005461BC /* DataService.swift in Sources */,
 				BAB2A12D2D92248E005461BC /* SpotDetailView.swift in Sources */,
+				BA5DBEEE2D9B0A1300BD88C3 /* UTDStudySpotsApp.swift in Sources */,
 				BAB2A12F2D9224A2005461BC /* SpotListView.swift in Sources */,
 				BA849B342D9265D100F0B10E /* BuildingsListView.swift in Sources */,
-				BAB2A10D2D910B10005461BC /* SceneDelegate.swift in Sources */,
 				BAB2A1222D92243A005461BC /* SpotCardView.swift in Sources */,
-				BA87497E2D922DEF00AD9850 /* main.swift in Sources */,
 				BA6A8CC22D95E9C40074038C /* MapUtils.swift in Sources */,
 				BAB2A1132D92239B005461BC /* StudySpot.swift in Sources */,
 				BA849B322D9265B300F0B10E /* BuildingDetailView.swift in Sources */,

@@ -77,6 +77,7 @@ class MapViewModel: ObservableObject {
                 return
             }
             
+
             self.routeOverlays = [route.polyline]
             
             // Adjust the map view to show the entire route

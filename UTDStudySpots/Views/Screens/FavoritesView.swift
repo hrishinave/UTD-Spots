@@ -26,7 +26,8 @@ struct FavoritesView: View {
                                         spot: spot,
                                         building: viewModel.buildingForSpot(spot) ?? Building.samples[0],
                                         onFavoriteToggle: { viewModel.toggleFavorite(for: $0) },
-                                        distance: userDistanceToSpot(spot)
+                                        distance: userDistanceToSpot(spot),
+                                        onTap: {} // Empty because NavigationLink handles the tap
                                     )
                                 }
                                 .buttonStyle(PlainButtonStyle())
@@ -66,4 +67,4 @@ struct FavoritesView_Previews: PreviewProvider {
             .environmentObject(StudySpotsViewModel())
             .environmentObject(LocationService())
     }
-} 
+}

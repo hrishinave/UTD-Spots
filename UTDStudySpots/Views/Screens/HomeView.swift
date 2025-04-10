@@ -24,8 +24,7 @@ struct HomeView: View {
             MapView()
                 .tabItem {
                     Label("Map", systemImage: "map")
-                }
-                .tag(2)
+                }   
             
             FavoritesView()
                 .tabItem {
@@ -39,6 +38,7 @@ struct HomeView: View {
             
             // Set the tab bar appearance
             let appearance = UITabBarAppearance()
+            
             appearance.backgroundColor = UIColor(Color.utdGreen)
             appearance.stackedLayoutAppearance.selected.iconColor = UIColor(Color.utdOrange)
             appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor(Color.utdOrange)]

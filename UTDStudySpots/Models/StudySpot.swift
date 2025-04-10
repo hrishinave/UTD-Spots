@@ -74,6 +74,22 @@ extension StudySpot {
         // McDermott Library Spots
         StudySpot(
             id: UUID(),
+            name: "Common Study Area - 1st Floor",
+            buildingID: Building.samples[0].id,  // McDermott Library ID
+            floor: 2,
+            description: "Common study area with individual chairs-tables",
+            features: ["Common Space", "Whiteboard"],
+            capacity: 6,
+            latitude: 32.98731870864668,
+            longitude: -96.74773635837403,
+            openingHours: Building.samples[0].openingHours,
+            reviewIDs: [],
+            isFavorite: false,
+            averageRating: 4.2
+        ),
+        
+        StudySpot(
+            id: UUID(),
             name: "Silent Study Area - 3rd Floor",
             buildingID: Building.samples[0].id,  // McDermott Library ID
             floor: 3,
@@ -129,8 +145,8 @@ extension StudySpot {
             description: "Large open study space with various seating options",
             features: ["Group Space", "Individual Desks", "Power Outlets", "Vending Machines"],
             capacity: 100,
-            latitude: 32.9901393,
-            longitude: -96.7503553,
+            latitude: 32.98811670344322,
+            longitude: -96.75019295790247,
             openingHours: Building.samples[2].openingHours,
             reviewIDs: [],
             isFavorite: false,

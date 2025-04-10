@@ -30,8 +30,10 @@ struct SpotListView: View {
                                         spot: spot,
                                         building: viewModel.buildingForSpot(spot) ?? Building.samples[0],
                                         onFavoriteToggle: { viewModel.toggleFavorite(for: $0) },
-                                        distance: userDistanceToSpot(spot)
+                                        distance: userDistanceToSpot(spot),
+                                        onTap: {} 
                                     )
+                                    .frame(width: 300)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
@@ -127,4 +129,4 @@ struct SpotListView_Previews: PreviewProvider {
             .environmentObject(StudySpotsViewModel())
             .environmentObject(LocationService())
     }
-} 
+}

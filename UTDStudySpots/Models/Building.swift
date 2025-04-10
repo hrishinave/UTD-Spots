@@ -94,7 +94,7 @@ extension Building {
                 "Saturday": "9:00 AM - 6:00 PM",
                 "Sunday": "12:00 PM - 12:00 AM"
             ],
-            imageNames: ["mcdermott_exterior", "mcdermott_interior"],
+            imageNames: ["library"],
             latitude: 32.98731870864668,
             longitude: -96.74773635837403
         ),
@@ -112,7 +112,7 @@ extension Building {
                 "Saturday": "9:00 AM - 5:00 PM",
                 "Sunday": "12:00 PM - 5:00 PM"
             ],
-            imageNames: ["jsom_exterior", "jsom_interior"],
+            imageNames: ["jsom"],
             latitude: 32.985297924246915,
             longitude: -96.74697043881872
         ),
@@ -129,9 +129,9 @@ extension Building {
                 "Friday": "9:00 AM - 12:00 AM",
                 "Saturday": "12:00 PM - 8:00 PM"
             ],
-            imageNames: ["slc_exterior", "slc_interior"],
-            latitude: 32.9901393,
-            longitude: -96.7503553
+            imageNames: ["sciences"],
+            latitude: 32.98811670344322,
+            longitude: -96.75019295790247
         ),
         Building(
             id: UUID(),
@@ -147,7 +147,7 @@ extension Building {
                 "Saturday": "10:00 AM - 6:45 PM",
                 "Sunday": "12:00 PM - 9:45 PM"
             ],
-            imageNames: ["founders_exterior", "founders_interior"],
+            imageNames: ["founders"],
             latitude: 32.987867521651346, 
             longitude: -96.74904891953264
         ),
@@ -165,7 +165,7 @@ extension Building {
                 "Saturday": "8:00 AM - 7:00 PM",
                 "Sunday": "8:00 AM - 7:00 PM"
             ],
-            imageNames: ["ecsw_exterior", "ecsw_interior"],
+            imageNames: ["ECSW"],
             latitude: 32.98643879369642, 
             longitude: -96.7516191834753    
         ),
@@ -183,7 +183,7 @@ extension Building {
                 "Saturday": "8:00 AM - 7:00 PM",
                 "Sunday": "8:00 AM - 7:00 PM"
             ],
-            imageNames: ["ecss_exterior", "ecss_interior"],
+            imageNames: ["ECSS"],
             latitude: 32.986302571253994, 
             longitude: -96.75052297294609
         )

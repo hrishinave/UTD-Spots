@@ -14,10 +14,7 @@ UTD Study Spots is an iOS application designed to help UT Dallas students find a
   - User ratings and reviews
 - **Personalized Experience**: Save favorite study spots for quick access
 - **Search & Filter**: Find specific spots by name, building, or available features
-- **Location-Based**: Sort study spots by proximity to your current location
 
-## Screenshots
-[Screenshots to be added]
 
 ## Technologies
 - **Swift & SwiftUI**: Modern, declarative UI framework for iOS
@@ -36,7 +33,7 @@ The project follows the MVVM (Model-View-ViewModel) architecture:
 - **Services**: Location services and other utilities
 - **Utils**: Helper functions and extensions
 
-## Installation
+## Installation for code
 1. Clone the repository
 2. Open `UTDStudySpots.xcodeproj` in Xcode
 3. Build and run the project on your iOS device or simulator

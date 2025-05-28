@@ -15,11 +15,6 @@ struct SpotDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                // Map preview
-                MapPreview(coordinate: spot.coordinates)
-                    .frame(height: 200)
-                    .cornerRadius(12)
-                    .padding(.horizontal)
                 
                 // Spot info header
                 VStack(alignment: .leading, spacing: 8) {

@@ -6,7 +6,6 @@ struct BuildingDetailView: View {
     @EnvironmentObject var locationService: LocationService
     let building: Building
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedSpot: StudySpot?
     
     private var spotsInBuilding: [StudySpot] {
         return viewModel.studySpots.filter { spot in
@@ -82,21 +81,22 @@ struct BuildingDetailView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 16) {
                                 ForEach(spotsInBuilding) { spot in
-                                    SpotCardView(
-                                        spot: spot,
-                                        building: building,
-                                        onFavoriteToggle: { spot in
-                                            viewModel.toggleFavorite(for: spot)
-                                        },
-                                        distance: viewModel.calculateDistance(
-                                            from: locationService.userLocation?.coordinate ?? CLLocationCoordinate2D(),
-                                            to: spot
-                                        ),
-                                        onTap: {
-                                            selectedSpot = spot
-                                        }
-                                    )
-                                    .frame(width: 300)
+                                    NavigationLink(destination: SpotDetailView(spot: spot)) {
+                                        SpotCardView(
+                                            spot: spot,
+                                            building: building,
+                                            onFavoriteToggle: { spot in
+                                                viewModel.toggleFavorite(for: spot)
+                                            },
+                                            distance: viewModel.calculateDistance(
+                                                from: locationService.userLocation?.coordinate ?? CLLocationCoordinate2D(),
+                                                to: spot
+                                            ),
+                                            onTap: {}
+                                        )
+                                        .frame(width: 300)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
                                 }
                             }
                             .padding(.horizontal)
@@ -107,21 +107,6 @@ struct BuildingDetailView: View {
             .padding(.vertical)
         }
         .navigationBarTitleDisplayMode(.inline)
-        .background(
-            Group {
-                if let selectedSpot = selectedSpot {
-                    NavigationLink(
-                        destination: SpotDetailView(spot: selectedSpot),
-                        isActive: Binding(
-                            get: { selectedSpot != nil },
-                            set: { if !$0 { self.selectedSpot = nil } }
-                        )
-                    ) {
-                        EmptyView()
-                    }
-                }
-            }
-        )
     }
 }
 

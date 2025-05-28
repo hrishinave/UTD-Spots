@@ -6,22 +6,34 @@ class StudySpotsViewModel: ObservableObject {
     @Published var studySpots: [StudySpot] = []
     @Published var buildings: [Building] = []
     @Published var reviews: [Review] = []
-    @Published var favoriteSpots: [StudySpot] = []
     
     @Published var selectedSpot: StudySpot?
     @Published var isLoading: Bool = false
+    @Published var loadingProgress: Double = 0.0
+    @Published var loadingMessage: String = "Initializing..."
     @Published var errorMessage: String?
+    @Published var hasLoadedInitialData: Bool = false
     
     // Search and filtering
     @Published var searchText: String = ""
     @Published var selectedBuilding: Building?
     @Published var selectedFeatures: Set<String> = []
     
+    // Store the original unfiltered data
+    private var allStudySpots: [StudySpot] = []
     private var cancellables = Set<AnyCancellable>()
     
+    // Computed property for favorite spots
+    var favoriteSpots: [StudySpot] {
+        return studySpots.filter { $0.isFavorite }
+    }
+    
     init() {
-        loadData()
-        
+        // Don't auto-load data in init, let splash screen control it
+        setupSearchFiltering()
+    }
+    
+    private func setupSearchFiltering() {
         // Set up search filtering
         $searchText
             .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
@@ -34,28 +46,71 @@ class StudySpotsViewModel: ObservableObject {
     // MARK: - Data Loading
     
     func loadData() {
-        isLoading = true
+        guard !hasLoadedInitialData else { return }
         
-        // In a real app, this would fetch from a server or local database
-        // For now, we're using sample data
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+        isLoading = true
+        loadingProgress = 0.0
+        
+        // Simulate realistic loading with progress updates
+        let loadingSteps: [(progress: Double, message: String, delay: Double)] = [
+            (0.2, "Connecting to campus network...", 0.5),
+            (0.4, "Loading building information...", 0.5),
+            (0.6, "Finding study spots...", 0.5),
+            (0.8, "Checking availability...", 0.5),
+            (1.0, "Finalizing setup...", 0.3)
+        ]
+        
+        var currentDelay: Double = 0
+        
+        for step in loadingSteps {
+            currentDelay += step.delay
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + currentDelay) { [weak self] in
+                guard let self = self else { return }
+                
+                self.loadingProgress = step.progress
+                self.loadingMessage = step.message
+                
+                // Load actual data when we reach 100%
+                if step.progress == 1.0 {
+                    self.loadActualData()
+                }
+            }
+        }
+    }
+    
+    // Load data immediately for previews and testing
+    func loadDataImmediately() {
+        self.buildings = Building.samples
+        self.reviews = Review.samples
+        self.allStudySpots = StudySpot.samples
+        self.studySpots = StudySpot.samples
+        self.hasLoadedInitialData = true
+        self.isLoading = false
+        self.loadingMessage = "Ready!"
+    }
+    
+    private func loadActualData() {
+        // Load the actual data
+        self.buildings = Building.samples
+        self.reviews = Review.samples
+        self.allStudySpots = StudySpot.samples
+        self.studySpots = StudySpot.samples // Initially show all spots
+        
+        // Mark as loaded and stop loading
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
             guard let self = self else { return }
             
-            self.buildings = Building.samples
-            self.reviews = Review.samples
-            self.studySpots = StudySpot.samples
-            
-            // Update favorite spots
-            self.favoriteSpots = self.studySpots.filter { $0.isFavorite }
-            
+            self.hasLoadedInitialData = true
             self.isLoading = false
+            self.loadingMessage = "Ready!"
         }
     }
     
     // MARK: - Filtering
     
     func filterSpots() {
-        var filteredSpots = StudySpot.samples
+        var filteredSpots = allStudySpots
         
         // Filter by search text
         if !searchText.isEmpty {
@@ -86,18 +141,12 @@ class StudySpotsViewModel: ObservableObject {
     // MARK: - Favorites
     
     func toggleFavorite(for spot: StudySpot) {
-        if let index = studySpots.firstIndex(where: { $0.id == spot.id }) {
-            var updatedSpot = studySpots[index]
-            updatedSpot.isFavorite.toggle()
-            studySpots[index] = updatedSpot
-            
-            // Update favorites list
-            if updatedSpot.isFavorite {
-                favoriteSpots.append(updatedSpot)
-            } else {
-                favoriteSpots.removeAll { $0.id == spot.id }
-            }
-        }
+        // Use FavoritesManager to toggle favorite status
+        FavoritesManager.shared.toggleFavorite(spotID: spot.id.uuidString)
+        
+        // Trigger UI update by updating the studySpots array
+        // This forces SwiftUI to re-evaluate the isFavorite computed property
+        objectWillChange.send()
     }
     
     // MARK: - Reviews

@@ -12,7 +12,7 @@ struct UTDStudySpotsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            SplashView()
                 .environmentObject(viewModel)
                 .environmentObject(locationService)
         }

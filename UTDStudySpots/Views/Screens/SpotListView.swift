@@ -7,67 +7,65 @@ struct SpotListView: View {
     @State private var showFilters = false
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color(.systemGroupedBackground)
-                    .ignoresSafeArea()
-                
-                if viewModel.isLoading {
-                    ProgressView("Loading study spots...")
-                        .tint(.utdOrange)
-                } else if viewModel.studySpots.isEmpty {
-                    EmptyStateView(
-                        title: "No study spots found",
-                        message: "Try adjusting your filters or search term",
-                        systemImage: "magnifyingglass"
-                    )
-                } else {
-                    ScrollView {
-                        LazyVStack(spacing: 16) {
-                            ForEach(viewModel.studySpots) { spot in
-                                NavigationLink(destination: SpotDetailView(spot: spot)) {
-                                    SpotCardView(
-                                        spot: spot,
-                                        building: viewModel.buildingForSpot(spot) ?? Building.samples[0],
-                                        onFavoriteToggle: { viewModel.toggleFavorite(for: $0) },
-                                        distance: userDistanceToSpot(spot),
-                                        onTap: {} 
-                                    )
-                                    .frame(width: 300)
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                            }
-                        }
-                        .padding()
-                    }
-                }
-            }
-            .navigationTitle("UTD Study Spots")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: { showFilters.toggle() }) {
-                        Image(systemName: "line.3.horizontal.decrease.circle")
-                            .foregroundColor(.utdOrange)
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { sortSpotsByDistance() }) {
-                        Image(systemName: "arrow.up.arrow.down")
-                            .foregroundColor(.utdOrange)
-                    }
-                }
-            }
-            .sheet(isPresented: $showFilters) {
-                FilterView(
-                    buildings: viewModel.buildings,
-                    selectedBuilding: $viewModel.selectedBuilding,
-                    selectedFeatures: $viewModel.selectedFeatures,
-                    onApplyFilters: { viewModel.filterSpots() }
+        ZStack {
+            Color(.systemGroupedBackground)
+                .ignoresSafeArea()
+            
+            if viewModel.isLoading {
+                ProgressView("Loading study spots...")
+                    .tint(.utdOrange)
+            } else if viewModel.studySpots.isEmpty {
+                EmptyStateView(
+                    title: "No study spots found",
+                    message: "Try adjusting your filters or search term",
+                    systemImage: "magnifyingglass"
                 )
+            } else {
+                ScrollView {
+                    LazyVStack(spacing: 16) {
+                        ForEach(viewModel.studySpots) { spot in
+                            NavigationLink(destination: SpotDetailView(spot: spot)) {
+                                SpotCardView(
+                                    spot: spot,
+                                    building: viewModel.buildingForSpot(spot) ?? Building.samples[0],
+                                    onFavoriteToggle: { viewModel.toggleFavorite(for: $0) },
+                                    distance: userDistanceToSpot(spot),
+                                    onTap: {} 
+                                )
+                                .frame(width: 300)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                    .padding()
+                }
             }
-            .searchable(text: $viewModel.searchText, prompt: "Search by name or features")
-            .tint(.utdOrange)
         }
+        .navigationTitle("UTD Study Spots")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: { showFilters.toggle() }) {
+                    Image(systemName: "line.3.horizontal.decrease.circle")
+                        .foregroundColor(.utdOrange)
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: { sortSpotsByDistance() }) {
+                    Image(systemName: "arrow.up.arrow.down")
+                        .foregroundColor(.utdOrange)
+                }
+            }
+        }
+        .sheet(isPresented: $showFilters) {
+            FilterView(
+                buildings: viewModel.buildings,
+                selectedBuilding: $viewModel.selectedBuilding,
+                selectedFeatures: $viewModel.selectedFeatures,
+                onApplyFilters: { viewModel.filterSpots() }
+            )
+        }
+        .searchable(text: $viewModel.searchText, prompt: "Search by name or features")
+        .tint(.utdOrange)
     }
     
     // Calculate distance from user to spot if location is available

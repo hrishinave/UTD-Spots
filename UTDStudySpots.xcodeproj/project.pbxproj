@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA4EE46D2DE684A7001BCD2D /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4EE46C2DE684A7001BCD2D /* FavoritesManager.swift */; };
+		BA4EE46F2DE68772001BCD2D /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4EE46E2DE68772001BCD2D /* SplashView.swift */; };
 		BA5DBEEE2D9B0A1300BD88C3 /* UTDStudySpotsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5DBEED2D9B0A1300BD88C3 /* UTDStudySpotsApp.swift */; };
 		BA6A8CC22D95E9C40074038C /* MapUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6A8CC12D95E9C40074038C /* MapUtils.swift */; };
 		BA849B302D92361B00F0B10E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA849B2F2D92361B00F0B10E /* Colors.swift */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA4EE46C2DE684A7001BCD2D /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
+		BA4EE46E2DE68772001BCD2D /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		BA5DBEED2D9B0A1300BD88C3 /* UTDStudySpotsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UTDStudySpotsApp.swift; path = ../UTDStudySpotsApp.swift; sourceTree = "<group>"; };
 		BA6A8CC12D95E9C40074038C /* MapUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUtils.swift; sourceTree = "<group>"; };
 		BA849B2F2D92361B00F0B10E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 			children = (
 				BAB2A1142D9223B9005461BC /* DataService.swift */,
 				BAB2A1162D9223C9005461BC /* LocationService.swift */,
+				BA4EE46C2DE684A7001BCD2D /* FavoritesManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				BAB2A12C2D92248E005461BC /* SpotDetailView.swift */,
 				BA849B312D9265B300F0B10E /* BuildingDetailView.swift */,
 				BA849B332D9265D100F0B10E /* BuildingsListView.swift */,
+				BA4EE46E2DE68772001BCD2D /* SplashView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -274,6 +280,7 @@
 				BA849B302D92361B00F0B10E /* Colors.swift in Sources */,
 				BAB2A12B2D92247A005461BC /* MapView.swift in Sources */,
 				BAB2A11D2D922409005461BC /* StudySpotsViewModel.swift in Sources */,
+				BA4EE46D2DE684A7001BCD2D /* FavoritesManager.swift in Sources */,
 				BAB2A1172D9223C9005461BC /* LocationService.swift in Sources */,
 				BAB2A1292D92246E005461BC /* HomeView.swift in Sources */,
 				BAB2A1252D922451005461BC /* FavoritesView.swift in Sources */,
@@ -285,6 +292,7 @@
 				BAB2A12F2D9224A2005461BC /* SpotListView.swift in Sources */,
 				BA849B342D9265D100F0B10E /* BuildingsListView.swift in Sources */,
 				BAB2A1222D92243A005461BC /* SpotCardView.swift in Sources */,
+				BA4EE46F2DE68772001BCD2D /* SplashView.swift in Sources */,
 				BA6A8CC22D95E9C40074038C /* MapUtils.swift in Sources */,
 				BAB2A1132D92239B005461BC /* StudySpot.swift in Sources */,
 				BA849B322D9265B300F0B10E /* BuildingDetailView.swift in Sources */,

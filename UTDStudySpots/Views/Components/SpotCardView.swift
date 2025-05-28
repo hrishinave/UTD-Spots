@@ -9,69 +9,67 @@ struct SpotCardView: View {
     let onTap: () -> Void
     
     var body: some View {
-        Button(action: onTap) {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(spot.name)
-                            .font(.headline)
-                        Text(building.name)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Spacer()
-                    
-                    Button {
-                        onFavoriteToggle(spot)
-                    } label: {
-                        Image(systemName: spot.isFavorite ? "heart.fill" : "heart")
-                            .foregroundColor(spot.isFavorite ? .red : .gray)
-                    }
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(spot.name)
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    Text(building.name)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                 }
                 
-                Text(spot.description)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .lineLimit(2)
+                Spacer()
                 
-                HStack {
-                    // Open/Closed Status
-                    HStack(spacing: 4) {
-                        Circle()
-                            .fill(spot.isCurrentlyOpen ? Color.green : Color.red)
-                            .frame(width: 8, height: 8)
-                        Text(spot.isCurrentlyOpen ? "Open" : "Closed")
-                            .foregroundColor(spot.isCurrentlyOpen ? .green : .red)
-                            .font(.subheadline)
-                    }
-                    
-                    Spacer()
-                    
-                    if let distance = distance {
-                        Text(String(format: "%.0f ft", distance))
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                }
-                
-                HStack {
-                    ForEach(spot.features.prefix(3), id: \.self) { feature in
-                        Text(feature)
-                            .font(.caption)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                            .background(Color.secondary.opacity(0.1))
-                            .cornerRadius(4)
-                    }
+                Button {
+                    onFavoriteToggle(spot)
+                } label: {
+                    Image(systemName: spot.isFavorite ? "heart.fill" : "heart")
+                        .foregroundColor(spot.isFavorite ? .red : .gray)
                 }
             }
-            .padding()
-            .background(Color(.systemBackground))
-            .cornerRadius(12)
-            .shadow(radius: 2)
+            
+            Text(spot.description)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .lineLimit(2)
+            
+            HStack {
+                // Open/Closed Status
+                HStack(spacing: 4) {
+                    Circle()
+                        .fill(spot.isCurrentlyOpen ? Color.green : Color.red)
+                        .frame(width: 8, height: 8)
+                    Text(spot.isCurrentlyOpen ? "Open" : "Closed")
+                        .foregroundColor(spot.isCurrentlyOpen ? .green : .red)
+                        .font(.subheadline)
+                }
+                
+                Spacer()
+                
+                if let distance = distance {
+                    Text(String(format: "%.0f ft", distance))
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+            }
+            
+            HStack {
+                ForEach(spot.features.prefix(3), id: \.self) { feature in
+                    Text(feature)
+                        .font(.caption)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.secondary.opacity(0.1))
+                        .cornerRadius(4)
+                }
+            }
         }
-        .buttonStyle(PlainButtonStyle())
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+        .shadow(radius: 2)
     }
 }
 

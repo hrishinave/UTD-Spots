@@ -6,46 +6,44 @@ struct FavoritesView: View {
     @EnvironmentObject var locationService: LocationService
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color(.systemGroupedBackground)
-                    .ignoresSafeArea()
-                
-                if viewModel.favoriteSpots.isEmpty {
-                    EmptyStateView(
-                        title: "No Favorites Yet",
-                        message: "Tap the heart icon on any study spot to add it to your favorites for quick access.",
-                        systemImage: "heart"
-                    )
-                } else {
-                    ScrollView {
-                        LazyVStack(spacing: 16) {
-                            ForEach(viewModel.favoriteSpots) { spot in
-                                NavigationLink(destination: SpotDetailView(spot: spot)) {
-                                    SpotCardView(
-                                        spot: spot,
-                                        building: viewModel.buildingForSpot(spot) ?? Building.samples[0],
-                                        onFavoriteToggle: { viewModel.toggleFavorite(for: $0) },
-                                        distance: userDistanceToSpot(spot),
-                                        onTap: {} // Empty because NavigationLink handles the tap
-                                    )
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                                .contextMenu {
-                                    Button(action: {
-                                        viewModel.toggleFavorite(for: spot)
-                                    }) {
-                                        Label("Remove from Favorites", systemImage: "heart.slash")
-                                    }
+        ZStack {
+            Color(.systemGroupedBackground)
+                .ignoresSafeArea()
+            
+            if viewModel.favoriteSpots.isEmpty {
+                EmptyStateView(
+                    title: "No Favorites Yet",
+                    message: "Tap the heart icon on any study spot to add it to your favorites for quick access.",
+                    systemImage: "heart"
+                )
+            } else {
+                ScrollView {
+                    LazyVStack(spacing: 16) {
+                        ForEach(viewModel.favoriteSpots) { spot in
+                            NavigationLink(destination: SpotDetailView(spot: spot)) {
+                                SpotCardView(
+                                    spot: spot,
+                                    building: viewModel.buildingForSpot(spot) ?? Building.samples[0],
+                                    onFavoriteToggle: { viewModel.toggleFavorite(for: $0) },
+                                    distance: userDistanceToSpot(spot),
+                                    onTap: {} // Empty because NavigationLink handles the tap
+                                )
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .contextMenu {
+                                Button(action: {
+                                    viewModel.toggleFavorite(for: spot)
+                                }) {
+                                    Label("Remove from Favorites", systemImage: "heart.slash")
                                 }
                             }
                         }
-                        .padding()
                     }
+                    .padding()
                 }
             }
-            .navigationTitle("Favorites")
         }
+        .navigationTitle("Favorites")
     }
     
     // Calculate distance from user to spot if location is available

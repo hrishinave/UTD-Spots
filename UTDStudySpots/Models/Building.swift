@@ -3,16 +3,16 @@ import CoreLocation
 
 // Shared building IDs to ensure consistency between Building and StudySpot models
 struct BuildingIDs {
-    static let mcDermottLibrary = UUID()
-    static let jsom = UUID()
-    static let slc = UUID()
-    static let founders = UUID()
-    static let ecsw = UUID()
-    static let dgac = UUID()
-    static let greenHall = UUID()
-    static let sciences = UUID()
-    static let ssa = UUID()
-    static let residenceHall = UUID()
+    static let mcDermottLibrary = UUID(uuidString: "550e8400-e29b-41d4-a716-446655440100")!
+    static let jsom = UUID(uuidString: "550e8400-e29b-41d4-a716-446655440101")!
+    static let slc = UUID(uuidString: "550e8400-e29b-41d4-a716-446655440102")!
+    static let founders = UUID(uuidString: "550e8400-e29b-41d4-a716-446655440103")!
+    static let ecsw = UUID(uuidString: "550e8400-e29b-41d4-a716-446655440104")!
+    static let dgac = UUID(uuidString: "550e8400-e29b-41d4-a716-446655440105")!
+    static let greenHall = UUID(uuidString: "550e8400-e29b-41d4-a716-446655440106")!
+    static let sciences = UUID(uuidString: "550e8400-e29b-41d4-a716-446655440107")!
+    static let ssa = UUID(uuidString: "550e8400-e29b-41d4-a716-446655440108")!
+    static let residenceHall = UUID(uuidString: "550e8400-e29b-41d4-a716-446655440109")!
 }
 
 struct Building: Identifiable, Codable, Hashable {
@@ -108,9 +108,9 @@ extension Building {
                 "Saturday": "10:00 AM - 10:00 PM",
                 "Sunday": "10:00 AM - 2:00 AM"
             ],
-            imageNames: ["mcdermott_library"],
-            latitude: 32.98731870864668,
-            longitude: -96.74773635837403
+            imageNames: ["library"],
+            latitude: 32.98686949592401,
+            longitude: -96.74765465059905
         ),
         
         Building(
@@ -184,7 +184,7 @@ extension Building {
                 "Saturday": "8:00 AM - 10:00 PM",
                 "Sunday": "8:00 AM - 11:00 PM"
             ],
-            imageNames: ["ecsw"],
+            imageNames: ["ECSW"],
             latitude: 32.98643879369642,
             longitude: -96.7516191834753
         ),
@@ -204,7 +204,7 @@ extension Building {
                 "Saturday": "Closed",
                 "Sunday": "Closed"
             ],
-            imageNames: [],
+            imageNames: ["dgac"],
             latitude: 32.98634525701794,
             longitude: -96.74630435469747
         ),
@@ -224,8 +224,8 @@ extension Building {
                 "Sunday": "8:00 AM - 11:00 PM"
             ],
             imageNames: ["green hall"],
-            latitude: 32.98720,
-            longitude: -96.75100
+            latitude: 32.988692982048065,
+            longitude: -96.74796097345694
         ),
         
         Building(
@@ -243,8 +243,8 @@ extension Building {
                 "Sunday": "8:00 AM - 11:00 PM"
             ],
             imageNames: ["sciences"],
-            latitude: 32.98650,
-            longitude: -96.74950
+            latitude: 32.988810692655484,
+            longitude: -96.75074639068727
         ),
         
         Building(
@@ -261,9 +261,9 @@ extension Building {
                 "Saturday": "9:00 AM - 6:00 PM",
                 "Sunday": "12:00 PM - 10:00 PM"
             ],
-            imageNames: [],
-            latitude: 32.98600,
-            longitude: -96.74800
+            imageNames: ["ssa"],
+            latitude: 32.98597970871512,
+            longitude: -96.748657548423
         )
     ]
 }

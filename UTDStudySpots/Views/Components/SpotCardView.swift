@@ -6,7 +6,6 @@ struct SpotCardView: View {
     let building: Building
     let onFavoriteToggle: (StudySpot) -> Void
     let distance: Double?
-    let onTap: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -27,7 +26,9 @@ struct SpotCardView: View {
                 } label: {
                     Image(systemName: spot.isFavorite ? "heart.fill" : "heart")
                         .foregroundColor(spot.isFavorite ? .red : .gray)
+                        .padding(8)
                 }
+                .buttonStyle(BorderlessButtonStyle())
             }
             
             Text(spot.description)
@@ -79,8 +80,7 @@ struct SpotCardView_Previews: PreviewProvider {
             spot: StudySpot.samples[0],
             building: Building.samples[0],
             onFavoriteToggle: { _ in }, 
-            distance: 250,
-            onTap: {}
+            distance: 250
         )
         .previewLayout(.sizeThatFits)
         .padding()

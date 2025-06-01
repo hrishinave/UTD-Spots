@@ -10,11 +10,15 @@ struct FilterView: View {
     @State private var tempSelectedFeatures: Set<String> = []
     @Environment(\.presentationMode) var presentationMode
     
-    // Common study spot features
+    // Updated features to match actual study spot data
     let availableFeatures = [
-        "Quiet", "Group Study", "Individual Study", "Power Outlets",
-        "WiFi", "Coffee Nearby", "Printers", "Computers",
-        "Whiteboard", "Natural Light", "Window View", "24/7 Access"
+        "Group Space", "Individual Space", "Silent Zone", "Quiet Zone",
+        "Power Outlets", "Natural Light", "Whiteboard", "Whiteboards",
+        "Computer Lab", "Workstations", "TV Screen", "Large Table",
+        "Comfortable Seating", "Individual Desks", "Printing",
+        "Coffee Shop", "Vending Machines", "Booths", "Tall Tables",
+        "Open Area", "Outdoor", "Fresh Air", "Reservable",
+        "Extended Hours", "24 Hours", "Study Rooms", "Cubicles"
     ]
     
     var body: some View {
@@ -30,31 +34,40 @@ struct FilterView: View {
                 }
                 
                 Section(header: Text("Features")) {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 8) {
-                            ForEach(availableFeatures, id: \.self) { feature in
-                                FilterChipView(
-                                    title: feature,
-                                    isSelected: tempSelectedFeatures.contains(feature),
-                                    onToggle: { selected in
-                                        if selected {
-                                            tempSelectedFeatures.insert(feature)
-                                        } else {
-                                            tempSelectedFeatures.remove(feature)
-                                        }
+                    LazyVGrid(columns: [
+                        GridItem(.flexible()),
+                        GridItem(.flexible())
+                    ], spacing: 8) {
+                        ForEach(availableFeatures.sorted(), id: \.self) { feature in
+                            FilterChipView(
+                                title: feature,
+                                isSelected: tempSelectedFeatures.contains(feature),
+                                onToggle: { selected in
+                                    if selected {
+                                        tempSelectedFeatures.insert(feature)
+                                    } else {
+                                        tempSelectedFeatures.remove(feature)
                                     }
-                                )
-                            }
+                                }
+                            )
                         }
-                        .padding(.vertical, 8)
                     }
-                    .padding(.horizontal, -20) // Counteract Form's default padding
+                    .padding(.vertical, 8)
                 }
                 
                 Section {
-                    Button("Reset Filters") {
-                        tempSelectedBuilding = nil
-                        tempSelectedFeatures.removeAll()
+                    HStack {
+                        Button("Reset Filters") {
+                            tempSelectedBuilding = nil
+                            tempSelectedFeatures.removeAll()
+                        }
+                        .foregroundColor(.red)
+                        
+                        Spacer()
+                        
+                        Text("\(tempSelectedFeatures.count) features selected")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                     }
                 }
             }
@@ -74,6 +87,7 @@ struct FilterView: View {
                         onApplyFilters()
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .fontWeight(.semibold)
                 }
             }
             .onAppear {
@@ -95,17 +109,19 @@ struct FilterChipView: View {
             onToggle(!isSelected)
         }) {
             Text(title)
-                .font(.subheadline)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
-                .background(isSelected ? Color.blue : Color.gray.opacity(0.2))
+                .font(.caption)
+                .fontWeight(isSelected ? .semibold : .regular)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(isSelected ? Color.utdOrange : Color.gray.opacity(0.1))
                 .foregroundColor(isSelected ? .white : .primary)
-                .cornerRadius(16)
+                .cornerRadius(12)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(isSelected ? Color.blue : Color.gray.opacity(0.3), lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(isSelected ? Color.utdOrange : Color.gray.opacity(0.3), lineWidth: 1)
                 )
         }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 

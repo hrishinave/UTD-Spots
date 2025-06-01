@@ -16,7 +16,7 @@ struct Review: Identifiable, Codable {
 extension Review {
     static let samples: [Review] = [
         Review(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440200")!,
             spotID: StudySpot.samples[0].id,
             rating: 5,
             comment: "Super quiet and peaceful. Perfect for focused study.",
@@ -25,7 +25,7 @@ extension Review {
             userID: nil
         ),
         Review(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440201")!,
             spotID: StudySpot.samples[0].id,
             rating: 4,
             comment: "Great space but can get crowded during finals week.",
@@ -34,7 +34,7 @@ extension Review {
             userID: nil
         ),
         Review(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440202")!,
             spotID: StudySpot.samples[1].id,
             rating: 5,
             comment: "Best place for group work. Plenty of whiteboards and space.",
@@ -43,7 +43,7 @@ extension Review {
             userID: nil
         ),
         Review(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440203")!,
             spotID: StudySpot.samples[2].id,
             rating: 3,
             comment: "Good location but gets noisy sometimes.",

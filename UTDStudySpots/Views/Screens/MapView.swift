@@ -142,13 +142,19 @@ struct MapView: View {
         }
         .navigationBarHidden(true)
         .sheet(isPresented: $showingBuildingDetail, onDismiss: {
-            // Adjust map focus when returning from detail view
-            if let building = selectedBuilding {
-                mapViewModel.focusOn(building: building)
-            }
+            // Clear the selected building when returning from detail view
+            selectedBuilding = nil
+            mapViewModel.selectedBuilding = nil
         }) {
             if let building = selectedBuilding {
-                BuildingDetailView(building: building)
+                NavigationStack {
+                    BuildingDetailView(building: building)
+                        .navigationDestination(for: StudySpot.self) { spot in
+                            SpotDetailView(spot: spot)
+                        }
+                }
+                .environmentObject(viewModel)
+                .environmentObject(locationService)
             }
         }
         .actionSheet(isPresented: $showingDirectionsActionSheet) {

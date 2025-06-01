@@ -40,8 +40,17 @@ struct BuildingDetailView: View {
                                 UIApplication.shared.open(url)
                             }
                         } label: {
-                            Label("Directions", systemImage: "location.fill")
-                                .font(.subheadline)
+                            HStack(spacing: 4) {
+                                Image(systemName: "location.fill")
+                                    .font(.system(size: 14, weight: .medium))
+                                Text("Directions")
+                                    .font(.system(size: 14, weight: .medium))
+                            }
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(Color.utdOrange)
+                            .cornerRadius(8)
                         }
                     }
                 }
@@ -81,7 +90,7 @@ struct BuildingDetailView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 16) {
                                 ForEach(spotsInBuilding) { spot in
-                                    NavigationLink(destination: SpotDetailView(spot: spot)) {
+                                    NavigationLink(value: spot) {
                                         SpotCardView(
                                             spot: spot,
                                             building: building,
@@ -91,8 +100,7 @@ struct BuildingDetailView: View {
                                             distance: viewModel.calculateDistance(
                                                 from: locationService.userLocation?.coordinate ?? CLLocationCoordinate2D(),
                                                 to: spot
-                                            ),
-                                            onTap: {}
+                                            )
                                         )
                                         .frame(width: 300)
                                     }
@@ -107,6 +115,18 @@ struct BuildingDetailView: View {
             .padding(.vertical)
         }
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(.utdOrange)
+                }
+            }
+        }
     }
 }
 

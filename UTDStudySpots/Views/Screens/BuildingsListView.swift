@@ -16,7 +16,7 @@ struct BuildingsListView: View {
                     
                     Spacer()
                     
-                    Text("Study Spots")
+                    Text("Buildings")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(.black)
@@ -140,7 +140,7 @@ struct BuildingRowView: View {
                     Image(building.imageNames[0])
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 70, height: 70)
+                        .frame(width: 85, height: 85)
                         .clipShape(Circle())
                         .overlay(
                             Circle()
@@ -149,7 +149,7 @@ struct BuildingRowView: View {
                 } else {
                     Circle()
                         .fill(Color.gray.opacity(0.2))
-                        .frame(width: 70, height: 70)
+                        .frame(width: 85, height: 85)
                         .overlay(
                             Text(building.code)
                                 .font(.caption)

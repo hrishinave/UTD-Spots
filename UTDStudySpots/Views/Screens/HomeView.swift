@@ -8,7 +8,7 @@ struct HomeView: View {
     @State private var showLocationPermissionAlert = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             TabView(selection: $selectedTab) {
                 BuildingsListView()
                     .tabItem {
@@ -38,7 +38,7 @@ struct HomeView: View {
                     .tag(2)
                 
                 FavoritesView()
-                    .tabItem {
+                    .tabItem {  
                         Image(systemName: selectedTab == 3 ? "heart.fill" : "heart")
                             .font(.system(size: 20, weight: .medium))
                         Text("Favorites")
@@ -47,8 +47,13 @@ struct HomeView: View {
                     .tag(3)
             }
             .navigationBarHidden(true)
+            .navigationDestination(for: StudySpot.self) { spot in
+                SpotDetailView(spot: spot)
+            }
+            .navigationDestination(for: Building.self) { building in
+                BuildingDetailView(building: building)
+            }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             setupTabBarAppearance()
             checkLocationPermission()
@@ -81,10 +86,11 @@ struct HomeView: View {
             .font: UIFont.systemFont(ofSize: 10, weight: .medium)
         ]
         
-        // Configure selected state - dark color
-        appearance.stackedLayoutAppearance.selected.iconColor = UIColor.black
+        // Configure selected state - UTD orange color
+        let utdOrangeColor = UIColor(red: 1.0, green: 0.4, blue: 0.0, alpha: 1.0) // UTD Orange
+        appearance.stackedLayoutAppearance.selected.iconColor = utdOrangeColor
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
-            .foregroundColor: UIColor.black,
+            .foregroundColor: utdOrangeColor,
             .font: UIFont.systemFont(ofSize: 10, weight: .medium)
         ]
         
@@ -93,7 +99,7 @@ struct HomeView: View {
         UITabBar.appearance().scrollEdgeAppearance = appearance
         
         // Set tint color for system-level selection
-        UITabBar.appearance().tintColor = UIColor.black
+        UITabBar.appearance().tintColor = utdOrangeColor
         UITabBar.appearance().unselectedItemTintColor = UIColor.lightGray
     }
     

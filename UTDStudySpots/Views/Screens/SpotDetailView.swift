@@ -8,10 +8,6 @@ struct SpotDetailView: View {
     @EnvironmentObject var locationService: LocationService
     @Environment(\.presentationMode) var presentationMode
     
-    @State private var showingReviewSheet = false
-    @State private var selectedRating: Int = 5
-    @State private var reviewComment: String = ""
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -40,18 +36,11 @@ struct SpotDetailView: View {
                             .foregroundColor(.secondary)
                     }
                     
-                    // Rating summary
+                    // Capacity info
                     HStack {
-                        ForEach(1...5, id: \.self) { index in
-                            Image(systemName: index <= Int(spot.averageRating) ? "star.fill" : "star")
-                                .foregroundColor(.yellow)
-                        }
-                        
-                        Text(String(format: "%.1f", spot.averageRating))
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                        
-                        Text("(\(viewModel.reviewsForSpot(spot).count) reviews)")
+                        Image(systemName: "person.2")
+                            .foregroundColor(.utdOrange)
+                        Text("Capacity: \(spot.capacity) people")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
@@ -81,13 +70,13 @@ struct SpotDetailView: View {
                         ForEach(spot.features, id: \.self) { feature in
                             HStack {
                                 Image(systemName: featureIcon(for: feature))
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(.utdOrange)
                                 Text(feature)
                                     .foregroundColor(.primary)
                                 Spacer()
                             }
                             .padding(8)
-                            .background(Color.blue.opacity(0.1))
+                            .background(Color.utdOrange.opacity(0.1))
                             .cornerRadius(8)
                         }
                     }
@@ -95,59 +84,34 @@ struct SpotDetailView: View {
                 .padding(.horizontal)
                 
                 // Opening hours
-                if let building = viewModel.buildingForSpot(spot) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Opening Hours")
-                            .font(.title2)
-                            .bold()
-                        
-                        ForEach(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], id: \.self) { day in
-                            if let hours = building.openingHours[day] {
-                                HStack {
-                                    Text(day)
-                                        .frame(width: 100, alignment: .leading)
-                                    Text(hours)
-                                    Spacer()
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Opening Hours")
+                        .font(.title2)
+                        .bold()
+                    
+                    ForEach(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], id: \.self) { day in
+                        if let hours = spot.openingHours[day] {
+                            HStack {
+                                Text(day)
+                                    .frame(width: 100, alignment: .leading)
+                                    .fontWeight(.medium)
+                                Text(hours)
+                                    .foregroundColor(hours == "Closed" ? .red : .primary)
+                                Spacer()
+                                
+                                // Show if currently open for this day
+                                if Calendar.current.component(.weekday, from: Date()) == weekdayNumber(for: day) {
+                                    Text(spot.isCurrentlyOpen ? "Open" : "Closed")
+                                        .font(.caption)
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(spot.isCurrentlyOpen ? .green : .red)
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 2)
+                                        .background(spot.isCurrentlyOpen ? Color.green.opacity(0.1) : Color.red.opacity(0.1))
+                                        .cornerRadius(4)
                                 }
-                                .padding(.vertical, 4)
                             }
-                        }
-                    }
-                    .padding(.horizontal)
-                }
-                
-                // Reviews section
-                VStack(alignment: .leading, spacing: 12) {
-                    HStack {
-                        Text("Reviews")
-                            .font(.title2)
-                            .bold()
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            showingReviewSheet = true
-                        }) {
-                            Text("Write Review")
-                                .bold()
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 6)
-                                .background(Color.blue)
-                                .cornerRadius(8)
-                        }
-                    }
-                    
-                    let reviews = viewModel.reviewsForSpot(spot)
-                    
-                    if reviews.isEmpty {
-                        Text("No reviews yet. Be the first to leave one!")
-                            .foregroundColor(.secondary)
-                            .padding(.vertical)
-                    } else {
-                        ForEach(reviews) { review in
-                            ReviewCardView(review: review)
-                                .padding(.vertical, 4)
+                            .padding(.vertical, 4)
                         }
                     }
                 }
@@ -156,48 +120,79 @@ struct SpotDetailView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $showingReviewSheet) {
-            AddReviewView(
-                spotID: spot.id,
-                spotName: spot.name,
-                rating: $selectedRating,
-                comment: $reviewComment,
-                onSubmit: { rating, comment in
-                    viewModel.addReview(
-                        for: spot,
-                        rating: rating,
-                        comment: comment
-                    )
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(.utdOrange)
                 }
-            )
+            }
         }
     }
     
     // Helper to get icon for feature
     private func featureIcon(for feature: String) -> String {
         switch feature {
-        case "Quiet":
+        case "Silent Zone", "Quiet Zone":
             return "speaker.slash"
-        case "Group Study":
+        case "Group Space":
             return "person.3"
-        case "Individual Study":
+        case "Individual Space", "Individual Desks":
             return "person"
         case "Power Outlets":
             return "bolt"
-        case "WiFi":
-            return "wifi"
-        case "Coffee Nearby":
-            return "cup.and.saucer"
-        case "Printers":
-            return "printer"
-        case "Computers":
-            return "desktopcomputer"
-        case "Whiteboard":
-            return "square.dashed"
         case "Natural Light":
             return "sun.max"
+        case "Whiteboard", "Whiteboards":
+            return "square.and.pencil"
+        case "Computer Lab", "Workstations":
+            return "desktopcomputer"
+        case "TV Screen":
+            return "tv"
+        case "Large Table":
+            return "rectangle.3.group"
+        case "Comfortable Seating":
+            return "sofa"
+        case "Printing":
+            return "printer"
+        case "Coffee Shop":
+            return "cup.and.saucer"
+        case "Vending Machines":
+            return "creditcard"
+        case "Booths", "Tall Tables":
+            return "table.furniture"
+        case "Open Area":
+            return "building.2"
+        case "Outdoor", "Fresh Air":
+            return "leaf"
+        case "Reservable":
+            return "calendar.badge.plus"
+        case "Extended Hours", "24 Hours":
+            return "clock"
+        case "Study Rooms":
+            return "door.left.hand.open"
+        case "Cubicles":
+            return "square.split.2x2"
         default:
             return "checkmark.circle"
+        }
+    }
+    
+    // Helper to convert day name to weekday number (1 = Sunday, 2 = Monday, etc.)
+    private func weekdayNumber(for day: String) -> Int {
+        switch day {
+        case "Sunday": return 1
+        case "Monday": return 2
+        case "Tuesday": return 3
+        case "Wednesday": return 4
+        case "Thursday": return 5
+        case "Friday": return 6
+        case "Saturday": return 7
+        default: return 0
         }
     }
 }
@@ -226,65 +221,6 @@ struct MapPreview: UIViewRepresentable {
         annotation.coordinate = coordinate
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotation(annotation)
-    }
-}
-
-// Review submission sheet
-struct AddReviewView: View {
-    let spotID: UUID
-    let spotName: String
-    @Binding var rating: Int
-    @Binding var comment: String
-    let onSubmit: (Int, String) -> Void
-    
-    @Environment(\.presentationMode) var presentationMode
-    
-    var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Rate this study spot")) {
-                    HStack {
-                        Spacer()
-                        ForEach(1...5, id: \.self) { index in
-                            Button(action: {
-                                rating = index
-                            }) {
-                                Image(systemName: index <= rating ? "star.fill" : "star")
-                                    .font(.title)
-                                    .foregroundColor(.yellow)
-                            }
-                        }
-                        Spacer()
-                    }
-                    .padding(.vertical)
-                }
-                
-                Section(header: Text("Your review")) {
-                    TextEditor(text: $comment)
-                        .frame(minHeight: 100)
-                }
-                
-                Section {
-                    Button("Submit Review") {
-                        // Only allow submission if comment is not empty
-                        if !comment.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                            onSubmit(rating, comment)
-                            presentationMode.wrappedValue.dismiss()
-                            
-                            // Reset form values
-                            rating = 5
-                            comment = ""
-                        }
-                    }
-                    .disabled(comment.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-                }
-            }
-            .navigationTitle("Review \(spotName)")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(trailing: Button("Cancel") {
-                presentationMode.wrappedValue.dismiss()
-            })
-        }
     }
 }
 

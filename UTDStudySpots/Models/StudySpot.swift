@@ -77,7 +77,7 @@ extension StudySpot {
     static let samples: [StudySpot] = [
         // Existing McDermott Library Spots
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440001")!,
             name: "Common Study Area - 1st Floor",
             buildingID: BuildingIDs.mcDermottLibrary,
             floor: 2,
@@ -100,7 +100,7 @@ extension StudySpot {
         ),
         
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440002")!,
             name: "Silent Study Area - 3rd Floor",
             buildingID: BuildingIDs.mcDermottLibrary,
             floor: 3,
@@ -123,7 +123,7 @@ extension StudySpot {
         ),
         
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440003")!,
             name: "Group Study Room 2.304",
             buildingID: BuildingIDs.mcDermottLibrary,
             floor: 2,
@@ -147,7 +147,7 @@ extension StudySpot {
         
         // New McDermott Library Spots
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440004")!,
             name: "Study Rooms",
             buildingID: BuildingIDs.mcDermottLibrary,
             floor: 1,
@@ -170,7 +170,7 @@ extension StudySpot {
         ),
         
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440005")!,
             name: "3rd Floor Cubicles",
             buildingID: BuildingIDs.mcDermottLibrary,
             floor: 3,
@@ -194,7 +194,7 @@ extension StudySpot {
         
         // Existing JSOM Spots
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440006")!,
             name: "JSOM 2.107 Study Lounge",
             buildingID: BuildingIDs.jsom,
             floor: 2,
@@ -218,7 +218,7 @@ extension StudySpot {
         
         // New JSOM Spots
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440007")!,
             name: "JSOM 2 Main Area",
             buildingID: BuildingIDs.jsom,
             floor: 2,
@@ -241,7 +241,7 @@ extension StudySpot {
         ),
         
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440008")!,
             name: "JSOM 3rd & 4th Floors",
             buildingID: BuildingIDs.jsom,
             floor: 3,
@@ -264,7 +264,7 @@ extension StudySpot {
         ),
         
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440009")!,
             name: "JSOM Undergraduate Lounge (JSOM 11.105)",
             buildingID: BuildingIDs.jsom,
             floor: 1,
@@ -288,7 +288,7 @@ extension StudySpot {
         
         // Existing SLC Spots
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440010")!,
             name: "SLC Commons",
             buildingID: BuildingIDs.slc,
             floor: 1,
@@ -312,7 +312,7 @@ extension StudySpot {
         
         // Existing Founders Building Spots
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440011")!,
             name: "Founders Study Nook",
             buildingID: BuildingIDs.founders,
             floor: 1,
@@ -335,7 +335,7 @@ extension StudySpot {
         ),
         
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440012")!,
             name: "Founders Lab",
             buildingID: BuildingIDs.founders,
             floor: 2,
@@ -359,7 +359,7 @@ extension StudySpot {
         
         // Existing ECSW Spots
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440013")!,
             name: "ECSW 2.160 Study Area",
             buildingID: BuildingIDs.ecsw,
             floor: 2,
@@ -383,7 +383,7 @@ extension StudySpot {
         
         // New ECSW Spots
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440014")!,
             name: "ECSW Atrium",
             buildingID: BuildingIDs.ecsw,
             floor: 1,
@@ -406,7 +406,7 @@ extension StudySpot {
         ),
         
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440015")!,
             name: "ECSW Bird's Nest",
             buildingID: BuildingIDs.ecsw,
             floor: 2,
@@ -429,7 +429,7 @@ extension StudySpot {
         ),
         
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440016")!,
             name: "ECSW Corner Study Nooks",
             buildingID: BuildingIDs.ecsw,
             floor: 2,
@@ -452,7 +452,7 @@ extension StudySpot {
         ),
         
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440017")!,
             name: "ECSW Balcony Seating",
             buildingID: BuildingIDs.ecsw,
             floor: 2,
@@ -465,7 +465,7 @@ extension StudySpot {
                 "Monday": "6:00 AM - 7:00 PM",
                 "Tuesday": "6:00 AM - 7:00 PM",
                 "Wednesday": "6:00 AM - 7:00 PM",
-                "Thursday": "6:00 AM - 7:00 PM",
+                "Thursday": "6:00 AM - 10:00 PM",
                 "Friday": "6:00 AM - 7:00 PM",
                 "Saturday": "8:00 AM - 7:00 PM",
                 "Sunday": "8:00 AM - 7:00 PM"
@@ -476,7 +476,7 @@ extension StudySpot {
         
         // New Davidson Gundy Alumni Center Spots
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440018")!,
             name: "Alumni Center Outdoor Seating",
             buildingID: BuildingIDs.dgac,
             floor: 1,
@@ -500,7 +500,7 @@ extension StudySpot {
         
         // New Green Hall Spots
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440019")!,
             name: "Green Hall Pit",
             buildingID: BuildingIDs.greenHall,
             floor: 1,
@@ -523,7 +523,7 @@ extension StudySpot {
         ),
         
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440020")!,
             name: "Jonsson-Green Sky Bridge",
             buildingID: BuildingIDs.greenHall,
             floor: 4,
@@ -547,7 +547,7 @@ extension StudySpot {
         
         // New Sciences Building Spots
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440021")!,
             name: "SCI Lecture Hall (SCI 1.220)",
             buildingID: BuildingIDs.sciences,
             floor: 1,
@@ -570,7 +570,7 @@ extension StudySpot {
         ),
         
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440022")!,
             name: "SCI Elevated Tables",
             buildingID: BuildingIDs.sciences,
             floor: 1,
@@ -594,7 +594,7 @@ extension StudySpot {
         
         // New Student Services Addition Spots
         StudySpot(
-            id: UUID(),
+            id: UUID(uuidString: "550e8400-e29b-41d4-a716-446655440023")!,
             name: "SSA Fourth Floor",
             buildingID: BuildingIDs.ssa,
             floor: 4,

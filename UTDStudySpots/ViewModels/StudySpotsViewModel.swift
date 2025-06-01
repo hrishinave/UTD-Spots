@@ -115,9 +115,18 @@ class StudySpotsViewModel: ObservableObject {
         // Filter by search text
         if !searchText.isEmpty {
             filteredSpots = filteredSpots.filter { spot in
+                // Search in spot name
                 spot.name.localizedCaseInsensitiveContains(searchText) ||
+                // Search in building name
                 self.buildings.first(where: { $0.id == spot.buildingID })?.name.localizedCaseInsensitiveContains(searchText) == true ||
-                spot.description.localizedCaseInsensitiveContains(searchText)
+                // Search in building code
+                self.buildings.first(where: { $0.id == spot.buildingID })?.code.localizedCaseInsensitiveContains(searchText) == true ||
+                // Search in description
+                spot.description.localizedCaseInsensitiveContains(searchText) ||
+                // Search in features
+                spot.features.contains { feature in
+                    feature.localizedCaseInsensitiveContains(searchText)
+                }
             }
         }
         
@@ -136,6 +145,13 @@ class StudySpotsViewModel: ObservableObject {
         }
         
         studySpots = filteredSpots
+    }
+    
+    func clearFilters() {
+        searchText = ""
+        selectedBuilding = nil
+        selectedFeatures.removeAll()
+        studySpots = allStudySpots
     }
     
     // MARK: - Favorites

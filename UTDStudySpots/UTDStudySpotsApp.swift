@@ -19,18 +19,26 @@ struct UTDStudySpotsApp: App {
     }
     
     private func setupAppearance() {
-        // Set up navigation bar appearance
+        // Force light mode interface style
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            windowScene.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .light
+            }
+        }
+        
+        // Set up navigation bar appearance with fixed light colors
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .systemBackground
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.backgroundColor = UIColor.white  // Fixed white background
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]  // Fixed black text
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]  // Fixed black text
         
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         
         // Set the tint color for interactive elements
-        UIView.appearance().tintColor = UIColor(named: "UTDOrange") ?? .systemBlue
+        let utdOrange = UIColor(red: 199/255, green: 91/255, blue: 18/255, alpha: 1.0)
+        UIView.appearance().tintColor = utdOrange
     }
 }

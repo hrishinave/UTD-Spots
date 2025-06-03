@@ -156,7 +156,7 @@ struct OnboardingPageView: View {
             VStack(spacing: 20) {
                 Text(page.title)
                     .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundColor(.primary)
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .offset(y: textOffset)
                     .opacity(textOpacity)
@@ -169,7 +169,7 @@ struct OnboardingPageView: View {
                 
                 Text(page.description)
                     .font(.system(size: 18, weight: .regular))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .lineLimit(nil)
                     .offset(y: textOffset)

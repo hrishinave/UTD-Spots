@@ -16,11 +16,11 @@ struct BuildingsListView: View {
                     
                     Spacer()
                     
-                    Text("Buildings")
+                    Text("UTD Buildings")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(.black)
-                    
+                
                     Spacer()
                     
                     // Invisible spacer to center the title

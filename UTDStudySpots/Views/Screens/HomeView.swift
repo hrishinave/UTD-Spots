@@ -87,7 +87,7 @@ struct HomeView: View {
         ]
         
         // Configure selected state - UTD orange color
-        let utdOrangeColor = UIColor(red: 1.0, green: 0.4, blue: 0.0, alpha: 1.0) // UTD Orange
+        let utdOrangeColor = UIColor(red: 199/255, green: 91/255, blue: 18/255, alpha: 1.0) // UTD Orange from Colors.swift
         appearance.stackedLayoutAppearance.selected.iconColor = utdOrangeColor
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
             .foregroundColor: utdOrangeColor,

@@ -47,7 +47,7 @@ The project follows the MVVM (Model-View-ViewModel) architecture:
 - User accounts and authentication
 - Ability to add new study spots
 - Real-time occupancy data
-- Integration with UTD's class schedule
+- Crowdsourcing spot occupancy/ letting users add newer study spots
 - Dark mode support
 - Notifications for favorite spots
 

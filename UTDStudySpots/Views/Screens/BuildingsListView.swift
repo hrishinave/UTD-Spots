@@ -48,7 +48,7 @@ struct BuildingsListView: View {
                     ScrollView {
                         LazyVStack(spacing: 24) {
                             ForEach(Array(sortedBuildings.enumerated()), id: \.element.id) { index, building in
-                                NavigationLink(destination: BuildingDetailView(building: building)) {
+                                NavigationLink(value: building) {
                                     BuildingRowView(building: building)
                                         .opacity(animateItems ? 1 : 0)
                                         .offset(x: animateItems ? 0 : 50)

@@ -97,10 +97,16 @@ struct BuildingDetailView: View {
                                             onFavoriteToggle: { spot in
                                                 viewModel.toggleFavorite(for: spot)
                                             },
-                                            distance: viewModel.calculateDistance(
-                                                from: locationService.userLocation?.coordinate ?? CLLocationCoordinate2D(),
-                                                to: spot
-                                            )
+                                            distance: {
+                                                guard let userLoc = locationService.userLocation else {
+                                                    return nil
+                                                }
+                                                let meters = viewModel.calculateDistance(
+                                                    from: userLoc.coordinate,
+                                                    to: spot
+                                                )
+                                                return meters * 3.28084
+                                            }()
                                         )
                                         .frame(width: 300)
                                     }

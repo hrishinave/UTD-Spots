@@ -78,11 +78,14 @@ struct FavoritesView: View {
         guard let userLocation = locationService.userLocation else {
             return nil
         }
-        
-        return viewModel.calculateDistance(
+
+        let distanceInMeters = viewModel.calculateDistance(
             from: userLocation.coordinate,
             to: spot
         )
+
+        // Convert meters to feet for display
+        return distanceInMeters * 3.28084
     }
 }
 

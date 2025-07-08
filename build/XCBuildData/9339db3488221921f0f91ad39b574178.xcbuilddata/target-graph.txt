@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-Target 'UTDStudySpots' in project 'UTDStudySpots' (no dependencies)

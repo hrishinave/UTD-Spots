@@ -8,7 +8,7 @@ struct WelcomeView: View {
     private let pages = [
         OnboardingPage(
             icon: "building.2.fill",
-            title: "Welcome to UTD Study Spots",
+            title: "Welcome to UTD Spots",
             description: "Discover the perfect study spaces across the University of Texas at Dallas campus.",
             color: .utdOrange
         ),

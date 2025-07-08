@@ -1,4 +1,4 @@
-# UTD Study Spots
+# UTD Spots
 
 ## Overview
 UTD Study Spots is an iOS application designed to help UT Dallas students find and share study locations across campus. The app provides a comprehensive directory of study spaces with detailed information about each location, helping students discover the perfect spot based on their preferences and needs.
@@ -47,7 +47,7 @@ The project follows the MVVM (Model-View-ViewModel) architecture:
 - User accounts and authentication
 - Ability to add new study spots
 - Real-time occupancy data
-- Integration with UTD's class schedule
+- Crowdsourcing spot occupancy/ letting users add newer study spots
 - Dark mode support
 - Notifications for favorite spots
 

@@ -8,36 +8,63 @@ struct SpotListView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Color(.systemGroupedBackground)
-                    .ignoresSafeArea()
-                
-                if viewModel.isLoading {
-                    ProgressView("Loading study spots...")
-                        .tint(.utdOrange)
-                } else if viewModel.studySpots.isEmpty {
-                    EmptyStateView(
-                        title: "No study spots found",
-                        message: "Try adjusting your filters or search term",
-                        systemImage: "magnifyingglass"
+            VStack(spacing: 0) {
+                // Custom Search Bar
+                HStack {
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 16))
+                        
+                        TextField("Search study spots...", text: $viewModel.searchText)
+                            .font(.system(size: 16))
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 10)
+                    .background(Color(.systemBackground))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(.systemGray4), lineWidth: 1)
                     )
-                } else {
-                    ScrollView {
-                        LazyVStack(spacing: 16) {
-                            ForEach(viewModel.studySpots) { spot in
-                                NavigationLink(destination: SpotDetailView(spot: spot)) {
-                                    SpotCardView(
-                                        spot: spot,
-                                        building: viewModel.buildingForSpot(spot) ?? Building.samples[0],
-                                        onFavoriteToggle: { viewModel.toggleFavorite(for: $0) },
-                                        distance: userDistanceToSpot(spot)
-                                    )
-                                    .frame(width: 300)
+                    .cornerRadius(10)
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 8)
+                .padding(.bottom, 12)
+                .background(Color(.systemGroupedBackground))
+                
+                // Main Content
+                ZStack {
+                    Color(.systemGroupedBackground)
+                        .ignoresSafeArea()
+                    
+                    if viewModel.isLoading {
+                        ProgressView("Loading study spots...")
+                            .tint(.utdOrange)
+                    } else if viewModel.studySpots.isEmpty {
+                        EmptyStateView(
+                            title: "No study spots found",
+                            message: "Try adjusting your filters or search term",
+                            systemImage: "magnifyingglass"
+                        )
+                    } else {
+                        ScrollView {
+                            LazyVStack(spacing: 16) {
+                                ForEach(viewModel.studySpots) { spot in
+                                    NavigationLink(destination: SpotDetailView(spot: spot)) {
+                                        SpotCardView(
+                                            spot: spot,
+                                            building: viewModel.buildingForSpot(spot) ?? Building.samples[0],
+                                            onFavoriteToggle: { viewModel.toggleFavorite(for: $0) },
+                                            distance: userDistanceToSpot(spot)
+                                        )
+                                        .frame(width: 300)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
                                 }
-                                .buttonStyle(PlainButtonStyle())
                             }
+                            .padding()
                         }
-                        .padding()
                     }
                 }
             }
@@ -82,7 +109,6 @@ struct SpotListView: View {
                     onApplyFilters: { viewModel.filterSpots() }
                 )
             }
-            .searchable(text: $viewModel.searchText, prompt: "Search by name, building, or features")
             .tint(.utdOrange)
         }
         .navigationViewStyle(StackNavigationViewStyle())

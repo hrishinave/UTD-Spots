@@ -62,7 +62,7 @@ struct BuildingsListView: View {
                             }
                         }
                         .padding(.horizontal, 20)
-                        .padding(.bottom, 100) // Space for tab bar
+                        .padding(.bottom, 20) // Minimal space for tab bar
                     }
                 }
             }
@@ -133,50 +133,62 @@ struct BuildingRowView: View {
     }
     
     var body: some View {
-        HStack(spacing: 16) {
-            // Circular Building Image
+        VStack(spacing: 0) {
+            // Full-width Rectangular Building Image
             ZStack {
                 if !building.imageNames.isEmpty {
-                    Image(building.imageNames[0])
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 85, height: 85)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle()
-                                .stroke(Color.gray.opacity(0.1), lineWidth: 1)
-                        )
+                    if building.name == "Jindal School of Management" {
+                        Rectangle()
+                            .fill(Color.gray.opacity(0.1))
+                            .frame(height: 160)
+                        
+                        Image(building.imageNames[0])
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 160)
+                    } else {
+                        Image(building.imageNames[0])
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(height: 160)
+                            .clipped()
+                    }
                 } else {
-                    Circle()
+                    Rectangle()
                         .fill(Color.gray.opacity(0.2))
-                        .frame(width: 85, height: 85)
+                        .frame(height: 160)
                         .overlay(
                             Text(building.code)
-                                .font(.caption)
+                                .font(.title2)
                                 .fontWeight(.medium)
                                 .foregroundColor(.gray)
                         )
                 }
             }
+            .clipShape(RoundedRectangle(cornerRadius: 12))
             
             // Building Information
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(building.name)
                     .font(.title3)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text(categoryDescription)
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .fontWeight(.regular)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
-            
-            Spacer()
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
         }
-        .padding(.vertical, 8)
-        .contentShape(Rectangle()) // Makes entire row tappable
+        .background(Color.white)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 2)
+        .contentShape(Rectangle()) // Makes entire card tappable
     }
 }
 

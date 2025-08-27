@@ -1,5 +1,6 @@
 import SwiftUI
 import MapKit
+import CoreLocation
 
 struct MapView: View {
     @EnvironmentObject var viewModel: StudySpotsViewModel
@@ -11,7 +12,7 @@ struct MapView: View {
     @State private var showingDirectionsActionSheet = false
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .center) {
             // Map
             BuildingMapViewRepresentable(
                 region: $mapViewModel.region,
@@ -27,117 +28,102 @@ struct MapView: View {
                 }
             )
             .ignoresSafeArea(edges: .top)
-            
-            // Controls overlay
-            VStack {
-                HStack {
-                    // Reset map button
-                    Button(action: {
-                        mapViewModel.resetRegionToUTD()
-                    }) {
-                        Image(systemName: "arrow.counterclockwise")
-                            .padding()
-                            .background(Color.white)
-                            .clipShape(Circle())
-                            .shadow(radius: 2)
-                    }
-                    .padding(.leading)
-                    
-                    Spacer()
-                    
-                    // Location tracking button
-                    Button(action: {
-                        toggleLocationTracking()
-                    }) {
-                        Image(systemName: locationTrackingImageName)
-                            .padding()
-                            .background(Color.white)
-                            .clipShape(Circle())
-                            .shadow(radius: 2)
-                    }
-                    .padding(.trailing)
+        }
+        // Top controls overlay (does not block map elsewhere)
+        .overlay(alignment: .top) {
+            HStack {
+                Button(action: {
+                    mapViewModel.resetRegionToUTD()
+                }) {
+                    Image(systemName: "arrow.counterclockwise")
+                        .padding()
+                        .background(Color.white)
+                        .clipShape(Circle())
+                        .shadow(radius: 2)
                 }
-                .padding(.top, 50)
+                .padding(.leading)
                 
                 Spacer()
                 
-                // Bottom card for selected building
-                if let building = selectedBuilding {
-                    VStack {
-                        // Building info card
-                        VStack(alignment: .leading, spacing: 8) {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(building.name)
-                                        .font(.headline)
-                                        .foregroundColor(.utdGreen)
-                                    
-                                    Text(building.code)
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                }
-                                
-                                Spacer()
-                                
-                                // Availability badge
-                                Text(building.isCurrentlyOpen ? "Open" : "Closed")
-                                    .font(.caption)
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .background(building.isCurrentlyOpen ? Color.utdGreen.opacity(0.2) : Color.red.opacity(0.2))
-                                    .foregroundColor(building.isCurrentlyOpen ? .utdGreen : .red)
-                                    .cornerRadius(4)
-                            }
-                            
-                            // Address
-                            Text(building.address)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            
-                            // Today's hours
-                            if let todayHours = getTodayHours(for: building) {
-                                Text("Today: \(todayHours)")
-                                    .font(.caption)
+                Button(action: {
+                    toggleLocationTracking()
+                }) {
+                    Image(systemName: locationTrackingImageName)
+                        .padding()
+                        .background(Color.white)
+                        .clipShape(Circle())
+                        .shadow(radius: 2)
+                }
+                .padding(.trailing)
+            }
+            .padding(.top, 50)
+        }
+        // Bottom card overlay
+        .overlay(alignment: .bottom) {
+            if let building = (selectedBuilding ?? mapViewModel.selectedBuilding) {
+                VStack(spacing: 0) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(building.name)
+                                    .font(.headline)
+                                    .foregroundColor(.utdGreen)
+                                Text(building.code)
+                                    .font(.subheadline)
                                     .foregroundColor(.secondary)
                             }
+                            Spacer()
+                            Text(building.isCurrentlyOpen ? "Open" : "Closed")
+                                .font(.caption)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                                .background(building.isCurrentlyOpen ? Color.utdGreen.opacity(0.2) : Color.red.opacity(0.2))
+                                .foregroundColor(building.isCurrentlyOpen ? .utdGreen : .red)
+                                .cornerRadius(4)
                         }
-                        .padding()
-                        
-                        // Action buttons
-                        HStack {
-                            Button(action: {
-                                showingBuildingDetail = true
-                            }) {
-                                Text("View Study Spots")
+                        Text(building.address)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        if let todayHours = getTodayHours(for: building) {
+                            Text("Today: \(todayHours)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Button(action: {
+                            selectedBuilding = building
+                            showingBuildingDetail = true
+                        }) {
+                            Text("View Spots")
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.utdOrange)
+                                .cornerRadius(8)
+                        }
+                        if locationService.userLocation != nil {
+                            Button(action: { showingDirectionsActionSheet = true }) {
+                                Text("Directions")
                                     .foregroundColor(.white)
                                     .padding()
                                     .frame(maxWidth: .infinity)
-                                    .background(Color.utdOrange)
+                                    .background(Color.utdGreen)
                                     .cornerRadius(8)
                             }
-                            
-                            if locationService.userLocation != nil {
-                                Button(action: {
-                                    showingDirectionsActionSheet = true
-                                }) {
-                                    Text("Directions")
-                                        .foregroundColor(.white)
-                                        .padding()
-                                        .frame(maxWidth: .infinity)
-                                        .background(Color.utdGreen)
-                                        .cornerRadius(8)
-                                }
-                            }
                         }
-                        .padding(.horizontal)
-                        .padding(.bottom)
                     }
-                    .background(Color(.systemBackground))
-                    .cornerRadius(16)
-                    .shadow(radius: 5)
-                    .padding()
-                    .transition(.move(edge: .bottom))
+                    .padding(.horizontal)
+                    .padding(.bottom)
                 }
+                .background(Color(.systemBackground))
+                .cornerRadius(16)
+                .shadow(radius: 5)
+                .padding()
+                .padding(.bottom, 90)
+                .transition(.move(edge: .bottom))
             }
         }
         .navigationBarHidden(true)
@@ -148,13 +134,10 @@ struct MapView: View {
         }) {
             if let building = selectedBuilding {
                 NavigationStack {
-                    BuildingDetailView(building: building)
-                        .navigationDestination(for: StudySpot.self) { spot in
-                            SpotDetailView(spot: spot)
-                        }
+                    SpotsInBuildingView(building: building)
+                        .environmentObject(viewModel)
+                        .environmentObject(locationService)
                 }
-                .environmentObject(viewModel)
-                .environmentObject(locationService)
             }
         }
         .actionSheet(isPresented: $showingDirectionsActionSheet) {
@@ -291,8 +274,11 @@ struct BuildingMapViewRepresentable: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             if let polyline = overlay as? MKPolyline {
                 let renderer = MKPolylineRenderer(polyline: polyline)
-                renderer.strokeColor = .blue
+                renderer.strokeColor = UIColor(Color.utdOrange)
                 renderer.lineWidth = 5
+                renderer.lineJoin = .round
+                renderer.lineCap = .round
+                renderer.alpha = 0.9
                 return renderer
             }
             return MKOverlayRenderer(overlay: overlay)
@@ -308,8 +294,7 @@ struct BuildingMapViewRepresentable: UIViewRepresentable {
             
             if annotationView == nil {
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView?.canShowCallout = true
-                annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                annotationView?.canShowCallout = false
             } else {
                 annotationView?.annotation = annotation
             }
@@ -339,3 +324,69 @@ struct MapView_Previews: PreviewProvider {
             .environmentObject(LocationService())
     }
 } 
+
+// Inline SpotsInBuildingView to ensure availability without project file edits
+struct SpotsInBuildingView: View {
+    @EnvironmentObject var viewModel: StudySpotsViewModel
+    @EnvironmentObject var locationService: LocationService
+    let building: Building
+    @Environment(\.dismiss) private var dismiss
+    
+    private var spotsInBuilding: [StudySpot] {
+        viewModel.studySpots.filter { $0.buildingID == building.id }
+    }
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            if spotsInBuilding.isEmpty {
+                EmptyStateView(
+                    title: "No spots found",
+                    message: "There are no study spots for this building.",
+                    systemImage: "magnifyingglass"
+                )
+                .padding()
+            } else {
+                ScrollView {
+                    LazyVStack(spacing: 16) {
+                        ForEach(spotsInBuilding) { spot in
+                            NavigationLink(destination: SpotDetailView(spot: spot)) {
+                                SpotCardView(
+                                    spot: spot,
+                                    building: building,
+                                    onFavoriteToggle: { viewModel.toggleFavorite(for: $0) },
+                                    distance: userDistanceToSpot(spot)
+                                )
+                                .frame(maxWidth: .infinity)
+                                .padding(.horizontal)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                    .padding(.vertical)
+                }
+            }
+        }
+        .navigationTitle(building.name)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: { dismiss() }) {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(.utdOrange)
+                }
+            }
+        }
+    }
+    
+    private func userDistanceToSpot(_ spot: StudySpot) -> Double? {
+        guard let userLocation = locationService.userLocation else {
+            return nil
+        }
+        let meters = viewModel.calculateDistance(
+            from: userLocation.coordinate,
+            to: spot
+        )
+        return meters * 3.28084
+    }
+}

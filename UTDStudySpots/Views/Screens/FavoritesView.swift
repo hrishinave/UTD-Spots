@@ -42,7 +42,7 @@ struct FavoritesView: View {
                 } else {
                     ScrollView {
                         LazyVStack(spacing: 16) {
-                            ForEach(filteredFavorites) { spot in
+                            ForEach(Array(filteredFavorites.enumerated()), id: \.element.id) { index, spot in
                                 NavigationLink(destination: SpotDetailView(spot: spot)) {
                                     SpotCardView(
                                         spot: spot,
@@ -50,6 +50,9 @@ struct FavoritesView: View {
                                         onFavoriteToggle: { viewModel.toggleFavorite(for: $0) },
                                         distance: userDistanceToSpot(spot)
                                     )
+                                    .opacity(1.0)
+                                    .offset(y: 0)
+                                    .animation(.easeOut(duration: 0.4).delay(0.03 * Double(index)), value: filteredFavorites.count)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                                 .contextMenu {

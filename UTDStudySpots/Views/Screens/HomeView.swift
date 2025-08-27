@@ -9,42 +9,25 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack {
-            TabView(selection: $selectedTab) {
-                BuildingsListView()
-                    .tabItem {
-                        Image(systemName: selectedTab == 0 ? "building.2.fill" : "building.2")
-                            .font(.system(size: 20, weight: .medium))
-                        Text("Buildings")
-                            .font(.caption)
+            ZStack(alignment: .bottom) {
+                Group {
+                    switch selectedTab {
+                    case 0:
+                        BuildingsListView()
+                    case 1:
+                        SpotListView()
+                    case 2:
+                        MapView()
+                    case 3:
+                        FavoritesView()
+                    default:
+                        BuildingsListView()
                     }
-                    .tag(0)
+                }
                 
-                SpotListView()
-                    .tabItem {
-                        Image(systemName: selectedTab == 1 ? "list.bullet" : "list.bullet")
-                            .font(.system(size: 20, weight: .medium))
-                        Text("All Spots")
-                            .font(.caption)
-                    }
-                    .tag(1)
-                
-                MapView()
-                    .tabItem {
-                        Image(systemName: selectedTab == 2 ? "location.fill" : "location")
-                            .font(.system(size: 20, weight: .medium))
-                        Text("Map")
-                            .font(.caption)
-                    }
-                    .tag(2)
-                
-                FavoritesView()
-                    .tabItem {  
-                        Image(systemName: selectedTab == 3 ? "heart.fill" : "heart")
-                            .font(.system(size: 20, weight: .medium))
-                        Text("Favorites")
-                            .font(.caption)
-                    }
-                    .tag(3)
+                CustomTabBar(selectedTab: $selectedTab)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 8)
             }
             .navigationBarHidden(true)
             .navigationDestination(for: StudySpot.self) { spot in
@@ -115,6 +98,94 @@ struct HomeView: View {
         if let url = URL(string: UIApplication.openSettingsURLString) {
             UIApplication.shared.open(url)
         }
+    }
+}
+
+// MARK: - Custom Tab Bar with Bubble Icons
+
+struct CustomTabBar: View {
+    @Binding var selectedTab: Int
+    
+    var body: some View {
+        HStack(spacing: 24) {
+            TabBarButton(
+                title: "Buildings",
+                systemImage: selectedTab == 0 ? "building.2.fill" : "building.2",
+                isSelected: selectedTab == 0
+            ) { selectedTab = 0 }
+            
+            TabBarButton(
+                title: "All Spots",
+                systemImage: "list.bullet",
+                isSelected: selectedTab == 1
+            ) { selectedTab = 1 }
+            
+            TabBarButton(
+                title: "Map",
+                systemImage: selectedTab == 2 ? "location.fill" : "location",
+                isSelected: selectedTab == 2
+            ) { selectedTab = 2 }
+            
+            TabBarButton(
+                title: "Favorites",
+                systemImage: selectedTab == 3 ? "heart.fill" : "heart",
+                isSelected: selectedTab == 3
+            ) { selectedTab = 3 }
+        }
+        .padding(.vertical, 10)
+        .padding(.horizontal, 16)
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color(.systemBackground))
+                .shadow(color: Color.black.opacity(0.08), radius: 8, x: 0, y: 2)
+        )
+    }
+}
+
+struct TabBarButton: View {
+    let title: String
+    let systemImage: String
+    let isSelected: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.impactOccurred()
+            action()
+        }) {
+            VStack(spacing: 6) {
+                BubbleIcon(systemImage: systemImage, isSelected: isSelected)
+                Text(title)
+                    .font(.caption2)
+                    .foregroundColor(isSelected ? .utdOrange : .gray)
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+struct BubbleIcon: View {
+    let systemImage: String
+    let isSelected: Bool
+    
+    var body: some View {
+        Image(systemName: systemImage)
+            .font(.system(size: 18, weight: .semibold))
+            .foregroundColor(isSelected ? .utdOrange : Color.gray)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 10)
+            .background(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .fill(Color.gray.opacity(0.08))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12, style: .continuous)
+                            .stroke(isSelected ? Color.utdOrange : Color.gray.opacity(0.3), lineWidth: 1.2)
+                    )
+            )
+            .scaleEffect(isSelected ? 1.08 : 1.0)
+            .animation(.spring(response: 0.35, dampingFraction: 0.75), value: isSelected)
     }
 }
 

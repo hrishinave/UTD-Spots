@@ -22,6 +22,8 @@ struct SpotCardView: View {
                 Spacer()
                 
                 Button {
+                    let generator = UIImpactFeedbackGenerator(style: .light)
+                    generator.impactOccurred()
                     onFavoriteToggle(spot)
                 } label: {
                     Image(systemName: spot.isFavorite ? "heart.fill" : "heart")
@@ -37,22 +39,44 @@ struct SpotCardView: View {
                 .lineLimit(2)
             
             HStack {
-                // Open/Closed Status
-                HStack(spacing: 4) {
-                    Circle()
-                        .fill(spot.isCurrentlyOpen ? Color.green : Color.red)
-                        .frame(width: 8, height: 8)
-                    Text(spot.isCurrentlyOpen ? "Open" : "Closed")
+                // Open/Closed pill
+                HStack(spacing: 6) {
+                    Image(systemName: spot.isCurrentlyOpen ? "checkmark.circle.fill" : "xmark.circle.fill")
+                        .font(.system(size: 12, weight: .semibold))
                         .foregroundColor(spot.isCurrentlyOpen ? .green : .red)
-                        .font(.subheadline)
+                    Text(spot.isCurrentlyOpen ? "Open" : "Closed")
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                        .foregroundColor(spot.isCurrentlyOpen ? .green : .red)
                 }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+                .background((spot.isCurrentlyOpen ? Color.green : Color.red).opacity(0.08))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke((spot.isCurrentlyOpen ? Color.green : Color.red).opacity(0.35), lineWidth: 1)
+                )
+                .cornerRadius(10)
                 
                 Spacer()
                 
                 if let distance = distance {
-                    Text(String(format: "%.0f ft", distance))
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+                    HStack(spacing: 6) {
+                        Image(systemName: "location")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundColor(.secondary)
+                        Text(String(format: "%.0f ft", distance))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(Color.gray.opacity(0.08))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                    )
+                    .cornerRadius(10)
                 }
             }
             

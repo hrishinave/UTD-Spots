@@ -50,7 +50,7 @@ struct SpotListView: View {
                     } else {
                         ScrollView {
                             LazyVStack(spacing: 16) {
-                                ForEach(viewModel.studySpots) { spot in
+                                ForEach(Array(viewModel.studySpots.enumerated()), id: \.element.id) { index, spot in
                                     NavigationLink(destination: SpotDetailView(spot: spot)) {
                                         SpotCardView(
                                             spot: spot,
@@ -59,6 +59,9 @@ struct SpotListView: View {
                                             distance: userDistanceToSpot(spot)
                                         )
                                         .frame(width: 300)
+                                        .opacity(animateOpacity(index: index))
+                                        .offset(y: animateOffset(index: index))
+                                        .animation(.easeOut(duration: 0.4).delay(0.03 * Double(index)), value: viewModel.studySpots.count)
                                     }
                                     .buttonStyle(PlainButtonStyle())
                                 }
@@ -150,6 +153,10 @@ struct SpotListView: View {
         viewModel.selectedBuilding != nil || 
         !viewModel.selectedFeatures.isEmpty
     }
+
+    // Simple staged appearance helpers
+    private func animateOpacity(index: Int) -> Double { 1.0 }
+    private func animateOffset(index: Int) -> CGFloat { 0 }
 }
 
 // Empty state view for when no results are found

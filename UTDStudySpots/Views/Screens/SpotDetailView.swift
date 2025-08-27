@@ -68,16 +68,23 @@ struct SpotDetailView: View {
                     
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                         ForEach(spot.features, id: \.self) { feature in
-                            HStack {
+                            HStack(spacing: 8) {
                                 Image(systemName: featureIcon(for: feature))
+                                    .font(.system(size: 12, weight: .semibold))
                                     .foregroundColor(.utdOrange)
                                 Text(feature)
+                                    .font(.footnote)
                                     .foregroundColor(.primary)
                                 Spacer()
                             }
-                            .padding(8)
-                            .background(Color.utdOrange.opacity(0.1))
-                            .cornerRadius(8)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 8)
+                            .background(Color.gray.opacity(0.08))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.utdOrange.opacity(0.35), lineWidth: 1)
+                            )
+                            .cornerRadius(10)
                         }
                     }
                 }

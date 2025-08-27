@@ -34,10 +34,15 @@ struct BuildingsListView: View {
                 
                 // Buildings List
                 if viewModel.isLoading {
-                    Spacer()
-                    ProgressView()
-                        .scaleEffect(1.2)
-                    Spacer()
+                    ScrollView {
+                        LazyVStack(spacing: 24) {
+                            ForEach(0..<3, id: \.self) { _ in
+                                BuildingCardSkeletonView()
+                                    .padding(.horizontal, 20)
+                            }
+                        }
+                        .padding(.top, 10)
+                    }
                 } else if viewModel.buildings.isEmpty {
                     Spacer()
                     Text("No buildings available")
@@ -83,6 +88,7 @@ struct BuildingsListView: View {
 
 struct BuildingRowView: View {
     let building: Building
+    @EnvironmentObject var viewModel: StudySpotsViewModel
     
     // Map building names to cleaner category descriptions
     private var categoryDescription: String {
@@ -164,6 +170,35 @@ struct BuildingRowView: View {
                                 .foregroundColor(.gray)
                         )
                 }
+
+                // Subtle dark gradient for contrast
+                LinearGradient(
+                    gradient: Gradient(colors: [Color.black.opacity(0.0), Color.black.opacity(0.25)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .allowsHitTesting(false)
+
+                // Open/Closed pill in top-left
+                VStack {
+                    HStack {
+                        Text(building.isCurrentlyOpen ? "Open" : "Closed")
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background((building.isCurrentlyOpen ? Color.green : Color.red).opacity(0.15))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke((building.isCurrentlyOpen ? Color.green : Color.red).opacity(0.35), lineWidth: 1)
+                            )
+                            .cornerRadius(8)
+                            .foregroundColor(building.isCurrentlyOpen ? .green : .red)
+                        Spacer()
+                    }
+                    .padding(10)
+                    Spacer()
+                }
             }
             .clipShape(RoundedRectangle(cornerRadius: 12))
             
@@ -176,11 +211,40 @@ struct BuildingRowView: View {
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(categoryDescription)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                    .fontWeight(.regular)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                HStack(spacing: 8) {
+                    Text(categoryDescription)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .fontWeight(.regular)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    // Spot count chip
+                    if spotCount > 0 {
+                        HStack(spacing: 6) {
+                            Image(systemName: "mappin.and.ellipse")
+                                .font(.system(size: 12, weight: .semibold))
+                            Text("\(spotCount) spots")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                        }
+                        .foregroundColor(.secondary)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.gray.opacity(0.08))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                        )
+                        .cornerRadius(8)
+                    }
+                }
+
+                // Affordance row
+                HStack {
+                    Spacer()
+                    Image(systemName: "chevron.right.circle.fill")
+                        .foregroundColor(.gray.opacity(0.5))
+                }
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
@@ -189,6 +253,77 @@ struct BuildingRowView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 2)
         .contentShape(Rectangle()) // Makes entire card tappable
+    }
+
+    private var spotCount: Int {
+        viewModel.studySpots.filter { $0.buildingID == building.id }.count
+    }
+}
+
+// MARK: - Skeletons
+
+struct ShimmerView: View {
+    @State private var phase: CGFloat = -0.6
+    
+    var body: some View {
+        GeometryReader { proxy in
+            let gradient = LinearGradient(
+                gradient: Gradient(colors: [
+                    Color.gray.opacity(0.25),
+                    Color.gray.opacity(0.12),
+                    Color.gray.opacity(0.25)
+                ]),
+                startPoint: .leading,
+                endPoint: .trailing
+            )
+            Rectangle()
+                .fill(gradient)
+                .mask(
+                    Rectangle()
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.black.opacity(0.4), Color.black, Color.black.opacity(0.4)]),
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                        )
+                        .offset(x: proxy.size.width * phase)
+                )
+                .onAppear {
+                    withAnimation(.linear(duration: 1.2).repeatForever(autoreverses: false)) {
+                        phase = 1.6
+                    }
+                }
+        }
+        .clipped()
+    }
+}
+
+struct BuildingCardSkeletonView: View {
+    var body: some View {
+        VStack(spacing: 0) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color.gray.opacity(0.15))
+                    .frame(height: 160)
+                ShimmerView()
+                    .frame(height: 160)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            VStack(alignment: .leading, spacing: 8) {
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(Color.gray.opacity(0.2))
+                    .frame(height: 16)
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(Color.gray.opacity(0.15))
+                    .frame(width: 120, height: 12)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+        }
+        .background(Color.white)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .shadow(color: Color.black.opacity(0.05), radius: 6, x: 0, y: 2)
     }
 }
 

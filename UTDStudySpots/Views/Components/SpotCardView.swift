@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreLocation
+import MapKit
 
 struct SpotCardView: View {
     let spot: StudySpot
@@ -9,11 +10,44 @@ struct SpotCardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            HStack(alignment: .top) {
+            HStack(alignment: .top, spacing: 12) {
+                // Thumbnail
+                ZStack {
+                    if let imageName = building.imageNames.first, !imageName.isEmpty {
+                        Image(imageName)
+                            .resizable()
+                            .scaledToFill()
+                    } else {
+                        Image(systemName: "building.2")
+                            .resizable()
+                            .scaledToFit()
+                            .padding(8)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .frame(width: 48, height: 48)
+                .background(Color.gray.opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(spot.name)
-                        .font(.headline)
-                        .foregroundColor(.primary)
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(spot.name)
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                        // Rating
+                        HStack(spacing: 4) {
+                            Image(systemName: "star.fill")
+                                .foregroundColor(.yellow)
+                                .font(.caption)
+                            Text(String(format: "%.1f", spot.averageRating))
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    
                     Text(building.name)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
@@ -89,6 +123,48 @@ struct SpotCardView: View {
                         .background(Color.secondary.opacity(0.1))
                         .cornerRadius(4)
                 }
+            }
+            
+            // Quick actions
+            HStack(spacing: 8) {
+                Button {
+                    // Open Apple Maps with walking directions
+                    MapUtils.openDirectionsInMaps(to: spot.coordinates, destinationName: spot.name)
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "figure.walk")
+                        Text("Directions")
+                    }
+                    .font(.caption)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(Color.utdGreen)
+                    .cornerRadius(8)
+                }
+                .buttonStyle(.plain)
+                
+                Button {
+                    // Open Apple Maps with just a pin
+                    let placemark = MKPlacemark(coordinate: spot.coordinates)
+                    let mapItem = MKMapItem(placemark: placemark)
+                    mapItem.name = spot.name
+                    mapItem.openInMaps()
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "mappin.circle")
+                        Text("View Map")
+                    }
+                    .font(.caption)
+                    .foregroundColor(.utdOrange)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(Color.utdOrange.opacity(0.12))
+                    .cornerRadius(8)
+                }
+                .buttonStyle(.plain)
+                
+                Spacer()
             }
         }
         .padding()
